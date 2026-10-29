@@ -1,16 +1,16 @@
 
 const DATA = {
   players: [
-    { name: "Josh", goals: 2, assists: 0, appearances: 2},
-    { name: "Ethan", goals: 0, assists: 0, appearances: 2},
-    { name: "Josè", goals: 0, assists: 0, appearances: 2},
-    { name: "Abdou", goals: 0, assists: 0, appearances: 2},
-    { name: "Adam", goals: 2, assists: 0, appearances: 2},
-    { name: "Alex", goals: 0, assists: 0, appearances: 1},
-    { name: "Brandon", goals: 0, assists: 0, appearances: 2},
-    { name: "Lathi", goals: 0, assists: 0, appearances: 2},
-    { name: "Zack", goals: 1, assists: 0, appearances: 1},
-    { name: "Manu", goals: 0, assists: 0, appearances: 0}
+    { name: "Josh", goals: 2, assists: 0, appearances: 2 },
+    { name: "Ethan", goals: 0, assists: 0, appearances: 2 },
+    { name: "Jose", goals: 0, assists: 0, appearances: 2 },
+    { name: "Abdou", goals: 0, assists: 0, appearances: 2 },
+    { name: "Adam", goals: 2, assists: 0, appearances: 2 },
+    { name: "Alex", goals: 0, assists: 0, appearances: 0 },
+    { name: "Brandon", goals: 0, assists: 0, appearances: 2 },
+    { name: "Lathi", goals: 0, assists: 0, appearances: 0 },
+    { name: "Zach", goals: 1, assists: 0, appearances: 2 },
+    { name: "Manu", goals: 0, assists: 0, appearances: 0 }
   ],
 
   results: [
@@ -19,15 +19,13 @@ const DATA = {
       date: "Date not recorded",
       team: 3,
       opponentScore: 3,
-      status: "D",
-      scorers: ["Josh", "Zack", "Adam"]
+      scorers: ["Josh", "Zach", "Adam"]
     },
     {
       opponent: "FC Sparta",
       date: "Date not recorded",
       team: 2,
       opponentScore: 1,
-      status: "W",
       scorers: ["Josh", "Adam"]
     }
   ],
@@ -42,11 +40,9 @@ const DATA = {
     { date: "16 Dec 2026", opponent: "Toray Logistics", time: "20:30", venue: "Fairview Action Arena" }
   ],
 
-  // Each recorded card currently counts as one shot under the team rules.
-  // Dates are left unrecorded because exact incident dates were not supplied.
   fines: [
     { player: "Ethan", incident: "Green card", type: "green", shots: 1, date: "Date not recorded" },
-    { player: "Zack", incident: "Green card", type: "green", shots: 1, date: "Date not recorded" },
+    { player: "Zach", incident: "Green card", type: "green", shots: 1, date: "Date not recorded" },
     { player: "Adam", incident: "Green card", type: "green", shots: 1, date: "Date not recorded" },
     { player: "Brandon", incident: "Green card", type: "green", shots: 1, date: "Date not recorded" },
     { player: "Abdou", incident: "Green card", type: "green", shots: 1, date: "Date not recorded" },
@@ -56,7 +52,7 @@ const DATA = {
   rules: [
     "Yellow card — one shot under the team rules.",
     "Green card — one shot under the team rules.",
-    "Injury — only applies if the team has agreed to this rule.",
+    "Injury — applies only if the team has agreed to this rule.",
     "Own goal — one shot under the team rules.",
     "Not scoring — one shot under the team rules.",
     "Missing an open goal — one shot under the team rules.",
@@ -102,8 +98,6 @@ function renderOverview() {
   $("drawsCount").textContent = draws;
   $("lossesCount").textContent = losses;
 
-  $("heroRecord").textContent = `${wins}W ${draws}D ${losses}L`;
-
   $("resultsList").innerHTML = [...DATA.results].reverse().map((match) => {
     const status = match.team > match.opponentScore
       ? "W"
@@ -114,13 +108,17 @@ function renderOverview() {
         <div class="result-team">
           TEMU BALLERS
           <small>${escapeHTML(match.date)}</small>
-          <span class="result-status status-${status}">${status === "W" ? "WIN" : status === "D" ? "DRAW" : "LOSS"}</span>
+          <span class="result-status status-${status}">
+            ${status === "W" ? "WIN" : status === "D" ? "DRAW" : "LOSS"}
+          </span>
         </div>
+
         <div class="result-score">
           <span>${match.team}</span>
           <span class="dash">–</span>
           <span>${match.opponentScore}</span>
         </div>
+
         <div class="result-team">
           ${escapeHTML(match.opponent)}
           <small>FULL TIME</small>
@@ -135,7 +133,7 @@ function renderOverview() {
           ? "W"
           : match.team === match.opponentScore ? "D" : "L";
 
-        return `<span class="form-pill ${status}" title="${status === "W" ? "Win" : status === "D" ? "Draw" : "Loss"}">${status}</span>`;
+        return `<span class="form-pill ${status}">${status}</span>`;
       }).join("")
     : `<div class="empty-state">No results recorded yet.</div>`;
 }
@@ -149,10 +147,15 @@ function renderPlayers(searchTerm = "") {
 
   $("playersGrid").innerHTML = filteredPlayers.length
     ? filteredPlayers.map((player) => `
-      <button class="player-card" type="button" data-player="${escapeHTML(player.name)}" aria-label="View ${escapeHTML(player.name)}'s profile">
+      <button
+        class="player-card"
+        type="button"
+        data-player="${escapeHTML(player.name)}"
+        aria-label="View ${escapeHTML(player.name)}'s statistics"
+      >
         <span class="player-avatar">${escapeHTML(initials(player.name))}</span>
         <span class="player-name">${escapeHTML(player.name)}</span>
-        <span class="player-position">${escapeHTML(player.position)}</span>
+
         <span class="player-mini-stats">
           <span><strong>${displayStat(player.goals)}</strong>Goals</span>
           <span><strong>${displayStat(player.assists)}</strong>Assists</span>
@@ -163,7 +166,9 @@ function renderPlayers(searchTerm = "") {
     : `<div class="empty-state">No players match your search.</div>`;
 
   $("playersGrid").querySelectorAll("[data-player]").forEach((button) => {
-    button.addEventListener("click", () => openPlayerProfile(button.dataset.player));
+    button.addEventListener("click", () => {
+      openPlayerProfile(button.dataset.player);
+    });
   });
 }
 
@@ -172,20 +177,19 @@ function renderLeaderboard(elementId, statName) {
     const aValue = a[statName];
     const bValue = b[statName];
 
-    if (aValue === null || aValue === undefined) return 1;
-    if (bValue === null || bValue === undefined) return -1;
+    if (aValue == null && bValue == null) return a.name.localeCompare(b.name);
+    if (aValue == null) return 1;
+    if (bValue == null) return -1;
 
     return bValue - aValue || a.name.localeCompare(b.name);
   });
 
-  const hasRecordedValues = players.some((player) =>
-    player[statName] !== null && player[statName] !== undefined
-  );
+  const hasRecordedValues = players.some((player) => player[statName] != null);
 
   if (!hasRecordedValues) {
     $(elementId).innerHTML = `
       <div class="empty-state">
-        No ${statName === "goals" ? "goal" : "assist"} records available yet.
+        ${statName === "goals" ? "Goal" : "Assist"} totals have not been recorded yet.
       </div>
     `;
     return;
@@ -193,7 +197,7 @@ function renderLeaderboard(elementId, statName) {
 
   $(elementId).innerHTML = players.map((player, index) => {
     const value = player[statName];
-    const recorded = value !== null && value !== undefined;
+    const recorded = value != null;
 
     return `
       <div class="leader-row">
@@ -202,7 +206,9 @@ function renderLeaderboard(elementId, statName) {
           <strong>${escapeHTML(player.name)}</strong>
           <small>${recorded ? "Season total" : "Not recorded"}</small>
         </span>
-        <span class="leader-value ${recorded ? "" : "unrecorded"}">${displayStat(value)}</span>
+        <span class="leader-value ${recorded ? "" : "unrecorded"}">
+          ${displayStat(value)}
+        </span>
       </div>
     `;
   }).join("");
@@ -272,11 +278,12 @@ function openPlayerProfile(playerName) {
     <div class="profile-header">
       <span class="player-avatar">${escapeHTML(initials(player.name))}</span>
       <div>
-        <p class="eyebrow">TEMU BALLERS • PLAYER PROFILE</p>
+        <p class="eyebrow">TEMU BALLERS</p>
         <h3>${escapeHTML(player.name)}</h3>
-        <p>${escapeHTML(player.position)}</p>
+        <p>Player statistics</p>
       </div>
     </div>
+
     <div class="profile-stats">
       <div class="profile-stat">
         <strong>${displayStat(player.appearances)}</strong>
@@ -291,10 +298,12 @@ function openPlayerProfile(playerName) {
         <span>Assists</span>
       </div>
     </div>
-    <p class="table-note">Player statistics are based on the records currently entered for the season.</p>
+
+    <p class="table-note">A dash means the statistic has not been recorded yet.</p>
   `;
 
   const dialog = $("playerDialog");
+
   if (typeof dialog.showModal === "function") {
     dialog.showModal();
   } else {
