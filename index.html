@@ -4,43 +4,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#101827">
-  <meta name="description" content="The official Temu Ballers team hub. Fixtures, results, squad statistics and team news.">
-  <title>Temu Ballers | Team Hub</title>
+
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Temu Ballers — team results, fixtures, player statistics and standings.">
+
+  <title>Temu Ballers | Official Team Website</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 
 <body>
-  <div class="site-shell">
 
-    <!-- HEADER -->
-    <header class="site-header">
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+
       <a class="brand" href="#home" aria-label="Temu Ballers home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none">
-            <path d="M24 3 42 10V23C42 34 34.5 41 24 45 13.5 41 6 34 6 23V10L24 3Z"
-              stroke="currentColor" stroke-width="2.5"/>
-            <path d="M24 11 34 15V23C34 29 30 33.5 24 36 18 33.5 14 29 14 23V15L24 11Z"
-              stroke="currentColor" stroke-width="2"/>
-            <path d="M19 20 24 17 29 20 27 26H21L19 20Z"
-              fill="currentColor"/>
-            <path d="M19 20 15 18M29 20 33 18M21 26 18 31M27 26 30 31M24 17V12"
-              stroke="currentColor" stroke-width="1.5"/>
-          </svg>
-        </span>
+        <span class="brand-mark">TB</span>
         <span class="brand-copy">
           <strong>TEMU BALLERS</strong>
-          <small>OFFICIAL TEAM HUB</small>
+          <small>FOOTBALL CLUB</small>
         </span>
       </a>
 
-      <button class="menu-toggle" id="menuToggle"
-        aria-label="Open navigation" aria-expanded="false"
-        aria-controls="mainNav">
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="mainNav"
+      >
         <span></span>
         <span></span>
         <span></span>
@@ -54,445 +53,782 @@
         <a class="nav-link" href="#discipline">Discipline</a>
       </nav>
 
-      <a class="header-tag" href="#squad">
-        <span class="status-dot"></span>
-        THE SQUAD
-      </a>
-    </header>
+    </div>
+  </header>
 
-    <main>
 
-      <!-- HERO -->
-      <section class="hero section-anchor" id="home">
-        <div class="hero-copy">
-          <div class="eyebrow">
-            <span class="eyebrow-line"></span>
-            THE CLUB. THE TEAM. THE GAME.
+  <main>
+
+    <!-- HERO -->
+    <section class="hero-section" id="home">
+      <div class="container">
+
+        <div class="hero-topline">
+          <span class="eyebrow">TEAM OVERVIEW</span>
+          <span class="season-label">2026 SEASON</span>
+        </div>
+
+        <div class="hero-content">
+          <div class="hero-copy">
+            <p class="hero-kicker">WELCOME TO</p>
+            <h1>Temu <span>Ballers.</span></h1>
+            <p class="hero-description">
+              The team. The results. The numbers.
+              Everything you need to keep up with Temu Ballers.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#results" class="button button-primary">View results</a>
+              <a href="#squad" class="button button-secondary">Meet the squad</a>
+            </div>
           </div>
 
-          <h1>ONE TEAM.<br><span>ONE STANDARD.</span></h1>
+          <div class="hero-record">
+            <span class="record-label">CURRENT RECORD</span>
 
-          <p>
-            Welcome to Temu Ballers. Your home for match results,
-            player performances, upcoming fixtures and everything
-            happening around the team.
-          </p>
+            <div class="record-main">
+              <strong id="heroRecord">1–1</strong>
+              <span>WINS — DRAWS — LOSSES</span>
+            </div>
 
-          <div class="hero-actions">
-            <a class="button button-primary" href="#results">
-              View results <span aria-hidden="true">↗</span>
-            </a>
-            <a class="button button-secondary" href="#squad">
-              Meet the squad
-            </a>
-          </div>
+            <div class="record-divider"></div>
 
-          <div class="hero-meta">
-            <span class="hero-meta-item">
-              <span class="status-dot"></span>
-              SEASON TRACKER
-            </span>
-            <span class="hero-meta-divider"></span>
-            <span>FAIRVIEW ACTION ARENA</span>
+            <div class="record-stats">
+              <div>
+                <strong id="heroGoals">5</strong>
+                <span>Goals scored</span>
+              </div>
+              <div>
+                <strong id="heroGoalDifference">+1</strong>
+                <span>Goal difference</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="hero-visual" aria-hidden="true">
-          <div class="hero-grid"></div>
-          <div class="hero-ring hero-ring-one"></div>
-          <div class="hero-ring hero-ring-two"></div>
+      </div>
+    </section>
 
-          <div class="hero-emblem">
-            <svg viewBox="0 0 180 180" fill="none">
-              <path d="M90 10 151 33V79C151 119 125 149 90 169 55 149 29 119 29 79V33L90 10Z"
-                stroke="currentColor" stroke-width="3"/>
-              <path d="M90 25 137 43V79C137 110 117 134 90 151 63 134 43 110 43 79V43L90 25Z"
-                stroke="currentColor" stroke-width="2"/>
-              <path d="M76 71 90 62 104 71 99 88H81L76 71Z"
-                fill="currentColor"/>
-              <path d="M76 71 61 65M104 71 119 65M81 88 70 104M99 88 110 104M90 62V45M70 104 74 121M110 104 106 121M74 121H106"
-                stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-              <text x="90" y="143" text-anchor="middle" fill="currentColor"
-                font-size="12" font-weight="800" letter-spacing="3">TB</text>
-            </svg>
-          </div>
 
-          <div class="hero-side-label">TEMU BALLERS · EST. 2026</div>
-          <div class="hero-corner hero-corner-top"></div>
-          <div class="hero-corner hero-corner-bottom"></div>
-        </div>
+    <!-- SEASON STATISTICS -->
+    <section class="section stats-overview">
+      <div class="container">
 
-        <div class="hero-bottom-line">
-          <span>BUILT ON TEAMWORK</span>
-          <span>DRIVEN BY COMPETITION</span>
-          <span>UNITED BY FOOTBALL</span>
-        </div>
-      </section>
-
-      <!-- SEASON OVERVIEW -->
-      <section class="section-block section-anchor" id="overview">
         <div class="section-heading">
           <div>
-            <span class="section-kicker">THE NUMBERS</span>
+            <span class="eyebrow">THE NUMBERS</span>
             <h2>Season overview</h2>
           </div>
-          <span class="section-note">All recorded matches</span>
+          <p class="section-note">An overview of our campaign so far.</p>
         </div>
 
         <div class="overview-grid">
-          <article class="stat-card stat-card-featured">
-            <span class="stat-label">MATCHES PLAYED</span>
-            <strong class="stat-number" id="matchesPlayed">0</strong>
-            <span class="stat-caption">Recorded results</span>
+
+          <article class="overview-card">
+            <span class="stat-label">Matches played</span>
+            <strong class="stat-number" id="matchesPlayed">2</strong>
+            <span class="stat-footnote">Total matches</span>
           </article>
 
-          <article class="stat-card">
-            <span class="stat-label">POINTS</span>
-            <strong class="stat-number" id="points">0</strong>
-            <span class="stat-caption">3 for a win · 1 for a draw</span>
+          <article class="overview-card">
+            <span class="stat-label">Points</span>
+            <strong class="stat-number" id="points">4</strong>
+            <span class="stat-footnote">From completed matches</span>
           </article>
 
-          <article class="stat-card">
-            <span class="stat-label">GOALS SCORED</span>
-            <strong class="stat-number" id="goalsFor">0</strong>
-            <span class="stat-caption">Team goals</span>
+          <article class="overview-card">
+            <span class="stat-label">Goals scored</span>
+            <strong class="stat-number" id="goalsFor">5</strong>
+            <span class="stat-footnote">Team total</span>
           </article>
 
-          <article class="stat-card">
-            <span class="stat-label">GOAL DIFFERENCE</span>
-            <strong class="stat-number" id="goalDifference">0</strong>
-            <span class="stat-caption">Goals scored minus conceded</span>
+          <article class="overview-card">
+            <span class="stat-label">Goal difference</span>
+            <strong class="stat-number" id="goalDifference">+1</strong>
+            <span class="stat-footnote">Goals for minus against</span>
           </article>
+
         </div>
 
-        <div class="record-strip">
-          <div class="record-heading">
-            <span class="section-kicker">OUR RECORD</span>
-            <span>Wins, draws and losses</span>
+        <div class="form-strip">
+          <div>
+            <span class="eyebrow">RECENT FORM</span>
+            <p>Our latest match results</p>
           </div>
-
-          <div class="record-items">
-            <div class="record-item">
-              <span class="record-indicator record-win"></span>
-              <span>Wins</span>
-              <strong id="winsCount">0</strong>
-            </div>
-            <div class="record-item">
-              <span class="record-indicator record-draw"></span>
-              <span>Draws</span>
-              <strong id="drawsCount">0</strong>
-            </div>
-            <div class="record-item">
-              <span class="record-indicator record-loss"></span>
-              <span>Losses</span>
-              <strong id="lossesCount">0</strong>
-            </div>
-          </div>
+          <div class="form-guide" id="formGuide" aria-label="Recent results"></div>
         </div>
-      </section>
 
-      <!-- RESULTS -->
-      <section class="section-block section-anchor" id="results">
+      </div>
+    </section>
+
+
+    <!-- RESULTS -->
+    <section class="section section-muted" id="results">
+      <div class="container">
+
         <div class="section-heading">
           <div>
-            <span class="section-kicker">FULL-TIME</span>
+            <span class="eyebrow">MATCH CENTRE</span>
             <h2>Latest results</h2>
           </div>
-          <span class="section-note">Most recent first</span>
+          <span class="section-count" id="resultsCount">2 matches</span>
         </div>
 
-        <div class="content-panel">
-          <div class="panel-heading">
-            <span>Match centre</span>
-            <span class="panel-label">RESULTS</span>
-          </div>
-          <div class="results-list" id="resultsList"></div>
+        <div class="results-list" id="resultsList">
+
+          <article class="result-card">
+            <div class="result-date">
+              <span class="result-date-day">—</span>
+              <span>Date not recorded</span>
+            </div>
+
+            <div class="result-match">
+              <span class="team-name">Temu Ballers</span>
+              <div class="score-display">
+                <strong>3</strong>
+                <span>–</span>
+                <strong>3</strong>
+              </div>
+              <span class="opponent-name">Dark Knights</span>
+            </div>
+
+            <span class="result-status status-draw">Draw</span>
+
+            <div class="result-scorers">
+              <span>Scorers</span>
+              <p>Josh, Zach, Adam</p>
+            </div>
+          </article>
+
+          <article class="result-card">
+            <div class="result-date">
+              <span class="result-date-day">—</span>
+              <span>Date not recorded</span>
+            </div>
+
+            <div class="result-match">
+              <span class="team-name">Temu Ballers</span>
+              <div class="score-display">
+                <strong>2</strong>
+                <span>–</span>
+                <strong>1</strong>
+              </div>
+              <span class="opponent-name">FC Sparta</span>
+            </div>
+
+            <span class="result-status status-win">Win</span>
+
+            <div class="result-scorers">
+              <span>Scorers</span>
+              <p>Josh, Adam</p>
+            </div>
+          </article>
+
         </div>
 
-        <div class="form-panel">
-          <div>
-            <span class="section-kicker">RECENT FORM</span>
-            <h3>Last five matches</h3>
-          </div>
-          <div class="form-guide" id="formGuide"></div>
-        </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- SQUAD -->
-      <section class="section-block section-anchor" id="squad">
+
+    <!-- SQUAD -->
+    <section class="section" id="squad">
+      <div class="container">
+
         <div class="section-heading">
           <div>
-            <span class="section-kicker">THE PLAYERS</span>
+            <span class="eyebrow">THE TEAM</span>
             <h2>Meet the squad</h2>
             <p class="section-description">
-              Every player. Every contribution. One team.
+              Every player. Every contribution.
             </p>
           </div>
-          <div class="squad-count">
-            <strong id="playerCount">0</strong>
-            <span>PLAYERS</span>
+
+          <div class="squad-heading-right">
+            <span class="section-count" id="playerCount">10 players</span>
+            <label class="search-box">
+              <span class="sr-only">Search players</span>
+              <input
+                type="search"
+                id="playerSearch"
+                placeholder="Search players..."
+                autocomplete="off"
+              >
+            </label>
           </div>
         </div>
 
-        <!-- TEAM OF THE WEEK -->
-        <article class="totw-feature">
-          <div class="totw-badge" aria-hidden="true">
-            <svg viewBox="0 0 64 64" fill="none">
-              <path d="M32 5 39 21 57 23 44 36 47 54 32 45 17 54 20 36 7 23 25 21 32 5Z"
-                stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
-              <path d="M32 17 36 27 47 28 39 36 41 46 32 41 23 46 25 36 17 28 28 27 32 17Z"
-                fill="currentColor" opacity=".3"/>
-            </svg>
-          </div>
-          <div class="totw-copy">
-            <span class="section-kicker">RECOGNITION</span>
-            <h3>Team of the Week</h3>
-            <p>Gameweek 1</p>
-          </div>
-          <div class="totw-player">
-            <span class="totw-player-label">PLAYER SELECTED</span>
-            <strong>Jose</strong>
-            <span class="totw-player-subtitle">Temu Ballers</span>
-          </div>
-          <span class="totw-gameweek">GW 01</span>
-        </article>
+        <div class="players-grid" id="playersGrid">
 
-        <div class="squad-toolbar">
+          <article class="player-card">
+            <div class="player-card-top">
+              <span class="player-initials">J</span>
+              <span class="player-number">01</span>
+            </div>
+            <h3>Josh</h3>
+            <p class="player-role">Player</p>
+            <div class="player-card-stats">
+              <div><strong>2</strong><span>Goals</span></div>
+              <div><strong>2</strong><span>Apps</span></div>
+            </div>
+          </article>
+
+          <article class="player-card">
+            <div class="player-card-top">
+              <span class="player-initials">E</span>
+              <span class="player-number">02</span>
+            </div>
+            <h3>Ethan</h3>
+            <p class="player-role">Player</p>
+            <div class="player-card-stats">
+              <div><strong>0</strong><span>Goals</span></div>
+              <div><strong>2</strong><span>Apps</span></div>
+            </div>
+          </article>
+
+          <article class="player-card">
+            <div class="player-card-top">
+              <span class="player-initials">J</span>
+              <span class="player-number">03</span>
+            </div>
+            <h3>Jose</h3>
+            <p class="player-role">Player</p>
+            <div class="player-card-stats">
+              <div><strong>0</strong><span>Goals</span></div>
+              <div><strong>2</strong><span>Apps</span></div>
+            </div>
+          </article>
+
+          <article class="player-card">
+            <div class="player-card-top">
+              <span class="player-initials">A</span>
+              <span class="player-number">04</span>
+            </div>
+            <h3>Abdou</h3>
+            <p class="player-role">Player</p>
+            <div class="player-card-stats">
+              <div><strong>0</strong><span>Goals</span></div>
+              <div><strong>2</strong><span>Apps</span></div>
+            </div>
+          </article>
+
+          <article class="player-card">
+            <div class="player-card-top">
+              <span class="player-initials">A</span>
+              <span class="player-number">05</span>
+            </div>
+            <h3>Adam</h3>
+            <p class="player-role">Player</p>
+            <div class="player-card-stats">
+              <div><strong>2</strong><span>Goals</span></div>
+              <div><strong>2</strong><span>Apps</span></div>
+            </div>
+          </article>
+
+          <article class="player-card">
+            <div class="player-card-top">
+              <span class="player-initials">A</span>
+              <span class="player-number">06</span>
+            </div>
+            <h3>Alex</h3>
+            <p class="player-role">Player</p>
+            <div class="player-card-stats">
+              <div><strong>0</strong><span>Goals</span></div>
+              <div><strong>—</strong><span>Apps</span></div>
+            </div>
+          </article>
+
+          <article class="player-card">
+            <div class="player-card-top">
+              <span class="player-initials">B</span>
+              <span class="player-number">07</span>
+            </div>
+            <h3>Brandon</h3>
+            <p class="player-role">Player</p>
+            <div class="player-card-stats">
+              <div><strong>0</strong><span>Goals</span></div>
+              <div><strong>2</strong><span>Apps</span></div>
+            </div>
+          </article>
+
+          <article class="player-card">
+            <div class="player-card-top">
+              <span class="player-initials">L</span>
+              <span class="player-number">08</span>
+            </div>
+            <h3>Lathi</h3>
+            <p class="player-role">Player</p>
+            <div class="player-card-stats">
+              <div><strong>0</strong><span>Goals</span></div>
+              <div><strong>—</strong><span>Apps</span></div>
+            </div>
+          </article>
+
+          <article class="player-card">
+            <div class="player-card-top">
+              <span class="player-initials">Z</span>
+              <span class="player-number">09</span>
+            </div>
+            <h3>Zach</h3>
+            <p class="player-role">Player</p>
+            <div class="player-card-stats">
+              <div><strong>1</strong><span>Goals</span></div>
+              <div><strong>2</strong><span>Apps</span></div>
+            </div>
+          </article>
+
+          <article class="player-card">
+            <div class="player-card-top">
+              <span class="player-initials">M</span>
+              <span class="player-number">10</span>
+            </div>
+            <h3>Manu</h3>
+            <p class="player-role">Player</p>
+            <div class="player-card-stats">
+              <div><strong>0</strong><span>Goals</span></div>
+              <div><strong>—</strong><span>Apps</span></div>
+            </div>
+          </article>
+
+        </div>
+
+        <p class="empty-state" id="noPlayersMessage" hidden>
+          No players match your search.
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- PLAYER LEADERBOARDS -->
+    <section class="section section-muted" id="player-stats">
+      <div class="container">
+
+        <div class="section-heading">
           <div>
-            <span class="section-kicker">FIRST TEAM</span>
-            <h3>Player profiles</h3>
+            <span class="eyebrow">PLAYER PERFORMANCE</span>
+            <h2>Individual stats</h2>
           </div>
-          <label class="search-box">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.8"/>
-              <path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-            <input type="search" id="playerSearch"
-              placeholder="Search players..." autocomplete="off"
-              aria-label="Search players">
-          </label>
+          <p class="section-note">Based on recorded team statistics.</p>
         </div>
 
-        <div class="players-grid" id="playersGrid"></div>
+        <div class="leaderboard-grid">
 
-        <!-- LEADERBOARDS -->
-        <div class="leaderboards-grid">
-          <article class="content-panel leaderboard-panel">
+          <article class="panel">
             <div class="panel-heading">
               <div>
-                <span class="section-kicker">TOP SCORERS</span>
+                <span class="eyebrow">TOP SCORERS</span>
                 <h3>Golden Boot</h3>
               </div>
-              <span class="leaderboard-icon" aria-hidden="true">01</span>
+              <span class="panel-icon">G</span>
             </div>
-            <div id="goalsLeaderboard"></div>
+            <div id="goalsLeaderboard" class="leaderboard-list">
+              <div class="leaderboard-row">
+                <span class="leader-rank">01</span>
+                <strong>Josh</strong>
+                <span class="leader-value">2 goals</span>
+              </div>
+              <div class="leaderboard-row">
+                <span class="leader-rank">02</span>
+                <strong>Adam</strong>
+                <span class="leader-value">2 goals</span>
+              </div>
+              <div class="leaderboard-row">
+                <span class="leader-rank">03</span>
+                <strong>Zach</strong>
+                <span class="leader-value">1 goal</span>
+              </div>
+            </div>
           </article>
 
-          <article class="content-panel leaderboard-panel">
+          <article class="panel">
             <div class="panel-heading">
               <div>
-                <span class="section-kicker">CHANCE CREATORS</span>
-                <h3>Assist Leaders</h3>
+                <span class="eyebrow">CHANCE CREATORS</span>
+                <h3>Assist leaders</h3>
               </div>
-              <span class="leaderboard-icon" aria-hidden="true">02</span>
+              <span class="panel-icon">A</span>
             </div>
-            <div id="assistsLeaderboard"></div>
+            <div id="assistsLeaderboard" class="leaderboard-list">
+              <div class="leaderboard-row">
+                <span class="leader-rank">01</span>
+                <strong>Jose</strong>
+                <span class="leader-value">2 assists</span>
+              </div>
+              <div class="leaderboard-row">
+                <span class="leader-rank">02</span>
+                <strong>Ethan</strong>
+                <span class="leader-value">1 assist</span>
+              </div>
+            </div>
           </article>
+
         </div>
 
-        <!-- PLAYER STATISTICS -->
-        <div class="content-panel stats-panel">
+        <article class="panel stats-table-panel">
           <div class="panel-heading">
             <div>
-              <span class="section-kicker">PERFORMANCE</span>
+              <span class="eyebrow">FULL BREAKDOWN</span>
               <h3>Squad statistics</h3>
             </div>
-            <span class="panel-label">PLAYER RANKINGS</span>
           </div>
 
-          <div class="table-scroll">
+          <div class="table-wrapper">
             <table class="data-table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">PLAYER</th>
-                  <th scope="col">APP</th>
-                  <th scope="col">GOALS</th>
-                  <th scope="col">ASSISTS</th>
-                  <th scope="col">G+A</th>
+                  <th scope="col">Player</th>
+                  <th scope="col">Apps</th>
+                  <th scope="col">Goals</th>
+                  <th scope="col">Assists</th>
                 </tr>
               </thead>
-              <tbody id="statsTable"></tbody>
+              <tbody id="statsTable">
+                <tr><td>Josh</td><td>2</td><td>2</td><td>—</td></tr>
+                <tr><td>Ethan</td><td>2</td><td>0</td><td>1</td></tr>
+                <tr><td>Jose</td><td>2</td><td>0</td><td>2</td></tr>
+                <tr><td>Abdou</td><td>2</td><td>0</td><td>—</td></tr>
+                <tr><td>Adam</td><td>2</td><td>2</td><td>—</td></tr>
+                <tr><td>Alex</td><td>—</td><td>0</td><td>—</td></tr>
+                <tr><td>Brandon</td><td>2</td><td>0</td><td>—</td></tr>
+                <tr><td>Lathi</td><td>—</td><td>0</td><td>—</td></tr>
+                <tr><td>Zach</td><td>2</td><td>1</td><td>—</td></tr>
+                <tr><td>Manu</td><td>—</td><td>0</td><td>—</td></tr>
+              </tbody>
             </table>
           </div>
-          <p class="table-footnote">
-            G+A represents recorded goals plus recorded assists.
-            A dash means the statistic has not been recorded.
-          </p>
-        </div>
-      </section>
+        </article>
 
-      <!-- FIXTURES -->
-      <section class="section-block section-anchor" id="fixtures">
+        <article class="panel team-of-week-panel">
+          <div class="team-of-week-copy">
+            <span class="eyebrow">PLAYER RECOGNITION</span>
+            <h3>Team of the Week</h3>
+            <p>Recognising standout performances throughout the season.</p>
+          </div>
+
+          <div class="team-of-week-player">
+            <span class="totw-label">GAMEWEEK 1</span>
+            <strong id="teamOfWeekPlayer">Jose</strong>
+            <span>Player of the Week</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- FIXTURES -->
+    <section class="section" id="fixtures">
+      <div class="container">
+
         <div class="section-heading">
           <div>
-            <span class="section-kicker">WHAT'S NEXT</span>
+            <span class="eyebrow">WHAT'S NEXT</span>
             <h2>Upcoming fixtures</h2>
             <p class="section-description">
-              The road ahead for Temu Ballers.
+              Keep an eye on the schedule.
             </p>
           </div>
-          <div class="venue-tag">
-            <span class="status-dot"></span>
-            <span>FAIRVIEW ACTION ARENA</span>
-          </div>
+
+          <span class="venue-label">
+            <span class="venue-dot"></span>
+            Fairview Action Arena
+          </span>
         </div>
 
-        <div class="content-panel">
-          <div class="panel-heading">
-            <span>Fixture schedule</span>
-            <span class="panel-label">2026</span>
-          </div>
-          <div class="table-scroll">
-            <table class="data-table fixtures-data-table">
+        <article class="panel fixtures-panel">
+          <div class="table-wrapper">
+            <table class="data-table fixtures-table">
               <thead>
                 <tr>
-                  <th scope="col">DATE</th>
-                  <th scope="col">KICK-OFF</th>
-                  <th scope="col">MATCH</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Kick-off</th>
+                  <th scope="col">Opponent</th>
+                  <th scope="col">Venue</th>
+                  <th scope="col">Status</th>
                 </tr>
               </thead>
-              <tbody id="fixturesTable"></tbody>
+
+              <tbody id="fixturesTable">
+                <tr>
+                  <td>04 Nov 2026</td>
+                  <td>18:15</td>
+                  <td>Superstrikers</td>
+                  <td>Fairview Action Arena</td>
+                  <td><span class="table-status">Upcoming</span></td>
+                </tr>
+                <tr>
+                  <td>11 Nov 2026</td>
+                  <td>20:30</td>
+                  <td>Depot Utd FC</td>
+                  <td>Fairview Action Arena</td>
+                  <td><span class="table-status">Upcoming</span></td>
+                </tr>
+                <tr>
+                  <td>18 Nov 2026</td>
+                  <td>19:00</td>
+                  <td>Von-Boeties FC</td>
+                  <td>Fairview Action Arena</td>
+                  <td><span class="table-status">Upcoming</span></td>
+                </tr>
+                <tr>
+                  <td>25 Nov 2026</td>
+                  <td>18:15</td>
+                  <td>Teknology FC</td>
+                  <td>Fairview Action Arena</td>
+                  <td><span class="table-status">Upcoming</span></td>
+                </tr>
+                <tr>
+                  <td>02 Dec 2026</td>
+                  <td>19:45</td>
+                  <td>The Unknowns</td>
+                  <td>Fairview Action Arena</td>
+                  <td><span class="table-status">Upcoming</span></td>
+                </tr>
+                <tr>
+                  <td>09 Dec 2026</td>
+                  <td>21:15</td>
+                  <td>Quality Control</td>
+                  <td>Fairview Action Arena</td>
+                  <td><span class="table-status">Upcoming</span></td>
+                </tr>
+                <tr>
+                  <td>16 Dec 2026</td>
+                  <td>20:30</td>
+                  <td>Toray Logistics</td>
+                  <td>Fairview Action Arena</td>
+                  <td><span class="table-status">Upcoming</span></td>
+                </tr>
+              </tbody>
             </table>
           </div>
-        </div>
-      </section>
+        </article>
 
-      <!-- DISCIPLINE & INJURIES -->
-      <section class="section-block section-anchor" id="discipline">
+      </div>
+    </section>
+
+
+    <!-- DISCIPLINE -->
+    <section class="section section-muted" id="discipline">
+      <div class="container">
+
         <div class="section-heading">
           <div>
-            <span class="section-kicker">TEAM ACCOUNTABILITY</span>
-            <h2>Discipline & injuries</h2>
+            <span class="eyebrow">TEAM RECORDS</span>
+            <h2>Discipline &amp; availability</h2>
             <p class="section-description">
-              A clear record of cards and player injuries.
+              A record of cards, shots and reported injuries.
             </p>
           </div>
         </div>
 
-        <div class="discipline-summary">
-          <article class="discipline-stat">
-            <span class="discipline-stat-label">TOTAL CARDS</span>
-            <strong id="totalFines">0</strong>
+        <div class="overview-grid discipline-stats">
+
+          <article class="overview-card">
+            <span class="stat-label">Green cards</span>
+            <strong class="stat-number" id="greenCards">4</strong>
+            <span class="stat-footnote">Recorded total</span>
           </article>
-          <article class="discipline-stat">
-            <span class="discipline-stat-label">
-              <span class="card-dot green"></span> GREEN CARDS
-            </span>
-            <strong id="greenCards">0</strong>
+
+          <article class="overview-card">
+            <span class="stat-label">Yellow cards</span>
+            <strong class="stat-number" id="yellowCards">1</strong>
+            <span class="stat-footnote">Recorded total</span>
           </article>
-          <article class="discipline-stat">
-            <span class="discipline-stat-label">
-              <span class="card-dot yellow"></span> YELLOW CARDS
-            </span>
-            <strong id="yellowCards">0</strong>
+
+          <article class="overview-card">
+            <span class="stat-label">Shots</span>
+            <strong class="stat-number" id="totalShots">5</strong>
+            <span class="stat-footnote">One per recorded card</span>
           </article>
-          <article class="discipline-stat">
-            <span class="discipline-stat-label">SHOTS RECORDED</span>
-            <strong id="totalShots">0</strong>
+
+          <article class="overview-card">
+            <span class="stat-label">Reported injuries</span>
+            <strong class="stat-number" id="injuryCount">1</strong>
+            <span class="stat-footnote">Currently recorded</span>
           </article>
+
         </div>
 
-        <div class="content-panel discipline-panel">
-          <div class="panel-heading">
-            <div>
-              <span class="section-kicker">CARD HISTORY</span>
-              <h3>Disciplinary register</h3>
+        <div class="discipline-grid">
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <span class="eyebrow">CARD REGISTER</span>
+                <h3>Player discipline</h3>
+              </div>
             </div>
-            <span class="panel-label">RECORDED INCIDENTS</span>
-          </div>
-          <div class="table-scroll">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th scope="col">DATE</th>
-                  <th scope="col">PLAYER</th>
-                  <th scope="col">CARD</th>
-                  <th scope="col">SHOTS</th>
-                </tr>
-              </thead>
-              <tbody id="finesTable"></tbody>
-            </table>
-          </div>
-        </div>
 
-        <div class="content-panel injury-panel">
-          <div class="panel-heading">
-            <div>
-              <span class="section-kicker">PLAYER WELFARE</span>
-              <h3>Injury register</h3>
+            <div class="table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Player</th>
+                    <th scope="col">Green</th>
+                    <th scope="col">Yellow</th>
+                    <th scope="col">Date</th>
+                  </tr>
+                </thead>
+
+                <tbody id="finesTable">
+                  <tr><td>Ethan</td><td>1</td><td>0</td><td>—</td></tr>
+                  <tr><td>Adam</td><td>2</td><td>0</td><td>—</td></tr>
+                  <tr><td>Zach</td><td>1</td><td>1</td><td>—</td></tr>
+                </tbody>
+              </table>
             </div>
-            <span class="panel-label">MEDICAL NOTES</span>
-          </div>
-          <div id="injuriesList"></div>
-          <p class="table-footnote">
-            Injury information is recorded separately from disciplinary cards.
-          </p>
-        </div>
+          </article>
 
-        <div class="content-panel rules-panel">
-          <div class="panel-heading">
-            <div>
-              <span class="section-kicker">TEAM AGREEMENTS</span>
-              <h3>Team rules</h3>
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <span class="eyebrow">PLAYER WELFARE</span>
+                <h3>Injury register</h3>
+              </div>
             </div>
-            <span class="panel-label">RULEBOOK</span>
-          </div>
-          <ol class="rules-list" id="rulesList"></ol>
-          <p class="safety-note">
-            Any drinking-related team tradition must remain voluntary.
-            Non-alcoholic alternatives should always be accepted, with no
-            pressure on anyone to drink.
-          </p>
+
+            <div id="injuriesList" class="injuries-list">
+              <div class="injury-row">
+                <span class="injury-indicator"></span>
+                <div>
+                  <strong>Alex</strong>
+                  <p>Ear injury</p>
+                </div>
+                <span class="injury-status">Reported</span>
+              </div>
+            </div>
+          </article>
+
         </div>
-      </section>
 
-    </main>
+      </div>
+    </section>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
+
+    <!-- TEAM RULES -->
+    <section class="section" id="rules">
+      <div class="container">
+
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">HOW WE PLAY</span>
+            <h2>Team rules</h2>
+            <p class="section-description">
+              The standards and agreements that keep us accountable.
+            </p>
+          </div>
+        </div>
+
+        <div class="rules-grid" id="rulesList">
+
+          <article class="rule-card">
+            <span class="rule-number">01</span>
+            <div>
+              <h3>Yellow card</h3>
+              <p>One shot under the team rules.</p>
+            </div>
+          </article>
+
+          <article class="rule-card">
+            <span class="rule-number">02</span>
+            <div>
+              <h3>Green card</h3>
+              <p>One shot under the team rules.</p>
+            </div>
+          </article>
+
+          <article class="rule-card">
+            <span class="rule-number">03</span>
+            <div>
+              <h3>Own goal</h3>
+              <p>One shot under the team rules.</p>
+            </div>
+          </article>
+
+          <article class="rule-card">
+            <span class="rule-number">04</span>
+            <div>
+              <h3>Not scoring</h3>
+              <p>One shot under the team rules.</p>
+            </div>
+          </article>
+
+          <article class="rule-card">
+            <span class="rule-number">05</span>
+            <div>
+              <h3>Missing an open goal</h3>
+              <p>One shot under the team rules.</p>
+            </div>
+          </article>
+
+          <article class="rule-card">
+            <span class="rule-number">06</span>
+            <div>
+              <h3>Finishing below 4th</h3>
+              <p>Everyone takes a shot.</p>
+            </div>
+          </article>
+
+          <article class="rule-card rule-card-wide">
+            <span class="rule-number">07</span>
+            <div>
+              <h3>Injury rule</h3>
+              <p>Only applies if the team has agreed to this rule.</p>
+            </div>
+          </article>
+
+        </div>
+
+        <p class="responsible-note">
+          Please drink responsibly. Non-alcoholic alternatives are always acceptable.
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+
       <a class="brand footer-brand" href="#home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none">
-            <path d="M24 3 42 10V23C42 34 34.5 41 24 45 13.5 41 6 34 6 23V10L24 3Z"
-              stroke="currentColor" stroke-width="2.5"/>
-            <path d="M24 11 34 15V23C34 29 30 33.5 24 36 18 33.5 14 29 14 23V15L24 11Z"
-              stroke="currentColor" stroke-width="2"/>
-            <path d="M19 20 24 17 29 20 27 26H21L19 20Z"
-              fill="currentColor"/>
-          </svg>
-        </span>
+        <span class="brand-mark">TB</span>
         <span class="brand-copy">
           <strong>TEMU BALLERS</strong>
-          <small>OFFICIAL TEAM HUB</small>
+          <small>FOOTBALL CLUB</small>
         </span>
       </a>
 
-      <p>Built for the team. Driven by the game.</p>
+      <p>Built for the team. Backed by the numbers.</p>
 
-      <a class="back-to-top" href="#home">
-        BACK TO TOP <span aria-hidden="true">↑</span>
-      </a>
-    </footer>
+      <a class="back-to-top" href="#home">Back to top ↑</a>
 
-  </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© <span id="currentYear">2026</span> Temu Ballers</span>
+      <span>Unofficial team statistics</span>
+    </div>
+  </footer>
+
 
   <!-- PLAYER PROFILE DIALOG -->
   <dialog class="player-dialog" id="playerDialog">
-    <button class="dialog-close" id="closeDialog"
-      type="button" aria-label="Close player profile">×</button>
-    <div id="playerProfile"></div>
+    <div class="dialog-inner">
+      <button
+        class="dialog-close"
+        id="closeDialog"
+        type="button"
+        aria-label="Close player profile"
+      >×</button>
+
+      <span class="eyebrow">PLAYER PROFILE</span>
+      <div id="playerProfile"></div>
+    </div>
   </dialog>
+
 
 </body>
 </html>
