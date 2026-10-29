@@ -1,159 +1,190 @@
+
 "use strict";
 
-/* =====================================================
-   TEMU BALLERS — THE SINGLE SOURCE OF CLUB DATA
-   Update this object when the team's records change.
-   ===================================================== */
+/* =========================================
+   TEMU BALLERS — CENTRAL SEASON DATA
+   Update the values here as the season grows.
+   ========================================= */
 
 const TEAM = {
+  name: "Temu Ballers",
+  season: 2026,
+  venue: "Fairview Action Arena",
+
   players: [
-    { name: "Josh",    appearances: 2, goals: 2, assists: 0, green: 0, yellow: 0 },
-    { name: "Ethan",   appearances: 2, goals: 0, assists: 1, green: 1, yellow: 0 },
-    { name: "Jose",    appearances: 2, goals: 0, assists: 2, green: 0, yellow: 0 },
-    { name: "Abdou",   appearances: 2, goals: 0, assists: 0, green: 0, yellow: 0 },
-    { name: "Adam",    appearances: 2, goals: 2, assists: 0, green: 2, yellow: 0 },
-    { name: "Alex",    appearances: 0, goals: 0, assists: 0, green: 0, yellow: 0 },
-    { name: "Brandon", appearances: 2, goals: 0, assists: 0, green: 0, yellow: 0 },
-    { name: "Lathi",   appearances: 0, goals: 0, assists: 0, green: 0, yellow: 0 },
-    { name: "Zach",    appearances: 2, goals: 1, assists: 0, green: 1, yellow: 1 },
-    { name: "Manu",    appearances: 0, goals: 0, assists: 0, green: 0, yellow: 0 }
+    { name: "Josh", goals: 2, assists: 0, appearances: 2, green: 0, yellow: 0 },
+    { name: "Ethan", goals: 0, assists: 1, appearances: 2, green: 1, yellow: 0 },
+    { name: "Jose", goals: 0, assists: 2, appearances: 2, green: 0, yellow: 0 },
+    { name: "Abdou", goals: 0, assists: 0, appearances: 2, green: 0, yellow: 0 },
+    { name: "Adam", goals: 2, assists: 0, appearances: 2, green: 2, yellow: 0 },
+    { name: "Alex", goals: 0, assists: 0, appearances: 0, green: 0, yellow: 0 },
+    { name: "Brandon", goals: 0, assists: 0, appearances: 2, green: 0, yellow: 0 },
+    { name: "Lathi", goals: 0, assists: 0, appearances: 0, green: 0, yellow: 0 },
+    { name: "Zach", goals: 1, assists: 0, appearances: 2, green: 1, yellow: 1 },
+    { name: "Manu", goals: 0, assists: 0, appearances: 0, green: 0, yellow: 0 }
   ],
 
+  // Oldest result first. The last result is treated as the latest.
+  // Dates are omitted because confirmed dates were not supplied.
   results: [
     {
       opponent: "Dark Knights",
       teamGoals: 3,
       opponentGoals: 3,
-      scorers: ["Josh", "Zach", "Adam"],
-      date: 0
+      outcome: "Draw",
+      scorers: ["Josh", "Zach", "Adam"]
     },
     {
       opponent: "FC Sparta",
       teamGoals: 2,
       opponentGoals: 1,
-      scorers: ["Josh", "Adam"],
-      date: 0
+      outcome: "Win",
+      scorers: ["Josh", "Adam"]
     }
   ],
 
   fixtures: [
-    { date: "2026-11-04", time: "18:15", opponent: "Superstrikers", venue: "Fairview Action Arena" },
-    { date: "2026-11-11", time: "20:30", opponent: "Depot Utd FC", venue: "Fairview Action Arena" },
-    { date: "2026-11-18", time: "19:00", opponent: "Von-Boeties FC", venue: "Fairview Action Arena" },
-    { date: "2026-11-25", time: "18:15", opponent: "Teknology FC", venue: "Fairview Action Arena" },
-    { date: "2026-12-02", time: "19:45", opponent: "The Unknowns", venue: "Fairview Action Arena" },
-    { date: "2026-12-09", time: "21:15", opponent: "Quality Control", venue: "Fairview Action Arena" },
-    { date: "2026-12-16", time: "20:30", opponent: "Toray Logistics", venue: "Fairview Action Arena" }
+    { date: "2026-11-04", time: "18:15", opponent: "Superstrikers" },
+    { date: "2026-11-11", time: "20:30", opponent: "Depot Utd FC" },
+    { date: "2026-11-18", time: "19:00", opponent: "Von-Boeties FC" },
+    { date: "2026-11-25", time: "18:15", opponent: "Teknology FC" },
+    { date: "2026-12-02", time: "19:45", opponent: "The Unknowns" },
+    { date: "2026-12-09", time: "21:15", opponent: "Quality Control" },
+    { date: "2026-12-16", time: "20:30", opponent: "Toray Logistics" }
   ],
 
   injuries: [
-    { player: "Alex", injury: "Ear injury", status: "Reported" }
+    { name: "Alex", injury: "Ear injury", status: "Reported" }
   ],
 
-  teamOfWeek: {
+  teamOfTheWeek: {
     player: "Jose",
     gameweek: 1
   },
 
   rules: [
-    "A yellow card results in one shot.",
-    "A green card results in one shot.",
-    "An own goal results in one shot.",
+    "Receiving a yellow card results in one shot.",
+    "Receiving a green card results in one shot.",
+    "Scoring an own goal results in one shot.",
     "Not scoring results in one shot.",
     "Missing an open goal results in one shot.",
-    "Finishing below fourth place means everyone takes a shot.",
+    "Finishing below 4th place means everyone takes a shot.",
     "The injury rule applies only if the team agrees."
-  ]
+  ],
+
+  // No actual fine amounts have been provided.
+  // Keep these at zero until real values are recorded.
+  fines: {
+    Josh: 0,
+    Ethan: 0,
+    Jose: 0,
+    Abdou: 0,
+    Adam: 0,
+    Alex: 0,
+    Brandon: 0,
+    Lathi: 0,
+    Zach: 0,
+    Manu: 0
+  }
 };
 
 
-/* =====================================================
-   GENERAL HELPERS
-   ===================================================== */
+/* =========================================
+   HELPERS
+   ========================================= */
 
-const $ = (selector, root = document) => root.querySelector(selector);
+const $ = (selector) => document.querySelector(selector);
 
-const $$ = (selector, root = document) =>
-  Array.from(root.querySelectorAll(selector));
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (character) => {
+    const entities = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    };
 
-function safeText(value) {
-  return String(value ?? 0).replace(/[&<>"']/g, character => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[character]);
+    return entities[character];
+  });
 }
 
-function getStats(player) {
-  const goals = Number(player.goals) || 0;
-  const assists = Number(player.assists) || 0;
+function number(value) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : 0;
+}
 
-  return {
-    appearances: Number(player.appearances) || 0,
-    goals,
-    assists,
-    contributions: goals + assists,
-    green: Number(player.green) || 0,
-    yellow: Number(player.yellow) || 0
-  };
+function sum(items, property) {
+  return items.reduce((total, item) => total + number(item[property]), 0);
 }
 
 function initials(name) {
   return String(name)
     .trim()
     .split(/\s+/)
+    .map((part) => part.charAt(0))
+    .join("")
     .slice(0, 2)
-    .map(part => part[0].toUpperCase())
-    .join("");
+    .toUpperCase();
 }
 
-function getPlayer(name) {
-  return TEAM.players.find(player => player.name === name);
+function formatDate(dateString) {
+  const [year, month, day] = dateString.split("-").map(Number);
+
+  // Construct from local calendar parts to avoid UTC date shifts.
+  const date = new Date(year, month - 1, day);
+
+  return {
+    weekday: new Intl.DateTimeFormat("en-ZA", {
+      weekday: "short"
+    }).format(date),
+
+    short: new Intl.DateTimeFormat("en-ZA", {
+      day: "2-digit",
+      month: "short"
+    }).format(date),
+
+    full: new Intl.DateTimeFormat("en-ZA", {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    }).format(date)
+  };
 }
 
-function formatDate(dateString, year = false) {
-  if (!dateString) return "Date not recorded";
-
-  const [y, m, d] = dateString.split("-").map(Number);
-  const date = new Date(y, m - 1, d);
-
-  return date.toLocaleDateString("en-ZA", {
-    day: "numeric",
-    month: "short",
-    ...(year ? { year: "numeric" } : {})
-  });
+function setText(selector, value) {
+  const element = $(selector);
+  if (element) element.textContent = String(value);
 }
 
-function resultOutcome(match) {
-  if (match.teamGoals > match.opponentGoals) return "Win";
-  if (match.teamGoals < match.opponentGoals) return "Loss";
-  return "Draw";
+function outcomeClass(outcome) {
+  const value = String(outcome).toLowerCase();
+
+  if (value === "win") return "result-win";
+  if (value === "draw") return "result-draw";
+  if (value === "loss") return "result-loss";
+
+  return "";
 }
 
-function seasonStats() {
+function getSeasonTotals() {
   const played = TEAM.results.length;
 
-  const wins = TEAM.results.filter(
-    match => match.teamGoals > match.opponentGoals
+  const wins = TEAM.results.filter((match) =>
+    match.teamGoals > match.opponentGoals
   ).length;
 
-  const draws = TEAM.results.filter(
-    match => match.teamGoals === match.opponentGoals
+  const draws = TEAM.results.filter((match) =>
+    match.teamGoals === match.opponentGoals
   ).length;
 
-  const losses = TEAM.results.filter(
-    match => match.teamGoals < match.opponentGoals
+  const losses = TEAM.results.filter((match) =>
+    match.teamGoals < match.opponentGoals
   ).length;
 
-  const goalsFor = TEAM.results.reduce(
-    (sum, match) => sum + match.teamGoals, 0
-  );
-
-  const goalsAgainst = TEAM.results.reduce(
-    (sum, match) => sum + match.opponentGoals, 0
-  );
+  const goalsFor = sum(TEAM.results, "teamGoals");
+  const goalsAgainst = sum(TEAM.results, "opponentGoals");
+  const goalDifference = goalsFor - goalsAgainst;
 
   return {
     played,
@@ -162,472 +193,586 @@ function seasonStats() {
     losses,
     goalsFor,
     goalsAgainst,
-    goalDifference: goalsFor - goalsAgainst,
+    goalDifference,
     points: wins * 3 + draws
   };
 }
 
-function sortPlayers(metric = "goals") {
-  return [...TEAM.players].sort((a, b) => {
-    if (metric === "name") {
-      return a.name.localeCompare(b.name);
-    }
 
-    const A = getStats(a);
-    const B = getStats(b);
-
-    return B[metric] - A[metric]
-      || B.appearances - A.appearances
-      || a.name.localeCompare(b.name);
-  });
-}
-
-
-/* =====================================================
-   SEASON DASHBOARD
-   ===================================================== */
+/* =========================================
+   SEASON OVERVIEW
+   ========================================= */
 
 function renderSeasonStats() {
-  const mount = $("#seasonStats");
-  if (!mount) return;
+  const totals = getSeasonTotals();
 
-  const s = seasonStats();
-
-  const cards = [
-    ["Played", s.played],
-    ["Wins", s.wins],
-    ["Draws", s.draws],
-    ["Losses", s.losses],
-    ["Goals for", s.goalsFor],
-    ["Goals against", s.goalsAgainst],
-    ["Goal difference", s.goalDifference > 0 ? `+${s.goalDifference}` : s.goalDifference],
-    ["Points", s.points]
+  const stats = [
+    { label: "Matches played", value: totals.played, note: "Games completed" },
+    { label: "Wins", value: totals.wins, note: "Three points each", accent: true },
+    { label: "Draws", value: totals.draws, note: "One point each" },
+    { label: "Losses", value: totals.losses, note: "Matches lost" },
+    { label: "Goals scored", value: totals.goalsFor, note: "Team goals", accent: true },
+    {
+      label: "Goal difference",
+      value: totals.goalDifference > 0
+        ? `+${totals.goalDifference}`
+        : String(totals.goalDifference),
+      note: `${totals.goalsAgainst} goals conceded`
+    }
   ];
 
-  mount.innerHTML = cards.map(([label, value], index) => `
-    <article class="stat-card ${index === 7 ? "stat-card-accent" : ""}">
-      <span>${safeText(label)}</span>
-      <strong>${safeText(value)}</strong>
+  const container = $("#seasonStats");
+  if (!container) return;
+
+  container.innerHTML = stats.map((stat) => `
+    <article class="season-stat">
+      <span class="season-stat-label">${escapeHTML(stat.label)}</span>
+      <strong class="season-stat-value ${stat.accent ? "accent" : ""}">
+        ${escapeHTML(stat.value)}
+      </strong>
+      <span class="season-stat-note">${escapeHTML(stat.note)}</span>
     </article>
   `).join("");
 }
 
 
-/* =====================================================
+/* =========================================
    MATCH CENTRE
-   ===================================================== */
+   ========================================= */
 
-function renderMatches() {
-  const resultsBody = $("#resultsTable");
-  const fixturesBody = $("#fixturesTable");
+function renderMatchup(match) {
+  const teamGoals = number(match.teamGoals);
+  const opponentGoals = number(match.opponentGoals);
 
-  if (resultsBody) {
-    resultsBody.innerHTML = [...TEAM.results].reverse().map(match => `
-      <tr>
-        <td>${safeText(match.opponent)}</td>
-        <td>${match.teamGoals}–${match.opponentGoals}</td>
-        <td>${resultOutcome(match)}</td>
-        <td>${match.scorers.length
-          ? match.scorers.map(safeText).join(", ")
-          : "0"}</td>
-      </tr>
-    `).join("");
-  }
-
-  if (fixturesBody) {
-    fixturesBody.innerHTML = TEAM.fixtures.map(fixture => `
-      <tr>
-        <td>${formatDate(fixture.date, true)}</td>
-        <td>${safeText(fixture.time)}</td>
-        <td>${safeText(fixture.opponent)}</td>
-        <td>${safeText(fixture.venue)}</td>
-      </tr>
-    `).join("");
-  }
-
-  // The last result in the current dataset is the most recent
-  // result entered. No match date is invented.
-  const latest = TEAM.results[TEAM.results.length - 1];
-
-  if (latest) {
-    const mount = $("#latestResult");
-
-    if (mount) {
-      mount.innerHTML = `
-        <div class="scoreboard">
-          <div class="team-side">
-            <span class="mini-crest">TB</span>
-            <strong>TEMU BALLERS</strong>
-          </div>
-          <div class="score">${latest.teamGoals} <span>–</span> ${latest.opponentGoals}</div>
-          <div class="opponent-side">
-            <strong>${safeText(latest.opponent.toUpperCase())}</strong>
-            <span class="opponent-crest">FC</span>
-          </div>
-        </div>
-        <p class="match-meta">
-          Scorers: ${latest.scorers.length
-            ? latest.scorers.map(safeText).join(", ")
-            : "0"}
-        </p>
-      `;
-    }
-  }
-
-  const next = TEAM.fixtures[0];
-
-  if (next) {
-    $("#nextOpponent").textContent = next.opponent.toUpperCase();
-    $("#nextDate").textContent = formatDate(next.date, true).toUpperCase();
-    $("#nextTime").textContent = next.time;
-    $("#nextVenue").textContent = next.venue;
-  }
-}
-
-
-/* =====================================================
-   PLAYER CARDS AND SEARCH
-   ===================================================== */
-
-function playerCard(player) {
-  const stats = getStats(player);
+  const scorers = Array.isArray(match.scorers) && match.scorers.length
+    ? match.scorers.map(escapeHTML).join(", ")
+    : "No scorers recorded";
 
   return `
-    <button class="player-card" type="button"
-      data-player="${safeText(player.name)}"
-      aria-label="View ${safeText(player.name)} profile">
-      <span class="player-avatar">${safeText(initials(player.name))}</span>
-      <strong>${safeText(player.name)}</strong>
-      <span>${stats.goals} GOALS · ${stats.assists} ASSISTS</span>
-    </button>
-  `;
-}
+    <div class="matchup">
+      <div class="match-team">
+        <span class="team-monogram">TB</span>
+        <span class="match-team-name">${escapeHTML(TEAM.name)}</span>
+      </div>
 
-function renderPlayers() {
-  const grid = $("#playersGrid");
-  if (!grid) return;
+      <div class="match-score" aria-label="${teamGoals} to ${opponentGoals}">
+        <span>${teamGoals}</span>
+        <span class="score-separator">:</span>
+        <span>${opponentGoals}</span>
+      </div>
 
-  const search = $("#playerSearch");
-  const count = $("#playerCount");
-  const empty = $("#noPlayersMessage");
-
-  function update() {
-    const query = (search?.value || "").trim().toLowerCase();
-
-    const players = TEAM.players.filter(player =>
-      player.name.toLowerCase().includes(query)
-    );
-
-    grid.innerHTML = players.map(playerCard).join("");
-
-    if (count) {
-      count.textContent = `${players.length} PLAYER${players.length === 1 ? "" : "S"}`;
-    }
-
-    if (empty) empty.hidden = players.length !== 0;
-  }
-
-  search?.addEventListener("input", update);
-  update();
-}
-
-
-/* =====================================================
-   PLAYER PROFILE DIALOG
-   ===================================================== */
-
-function openPlayerProfile(name) {
-  const player = getPlayer(name);
-  const dialog = $("#playerDialog");
-  const mount = $("#playerProfile");
-
-  if (!player || !dialog || !mount) return;
-
-  const s = getStats(player);
-
-  mount.innerHTML = `
-    <div class="profile-header">
-      <span class="player-avatar player-avatar-large">${safeText(initials(player.name))}</span>
-      <div>
-        <span class="eyebrow">Temu Ballers player</span>
-        <h2 id="profileName">${safeText(player.name)}</h2>
-        <span class="status-pill">SQUAD MEMBER</span>
+      <div class="match-team">
+        <span class="team-monogram">${escapeHTML(initials(match.opponent))}</span>
+        <span class="match-team-name">${escapeHTML(match.opponent)}</span>
       </div>
     </div>
 
-    <div class="profile-body">
-      <div class="profile-stats">
-        <div class="profile-stat"><strong>${s.appearances}</strong><span>Appearances</span></div>
-        <div class="profile-stat"><strong>${s.goals}</strong><span>Goals</span></div>
-        <div class="profile-stat"><strong>${s.assists}</strong><span>Assists</span></div>
-        <div class="profile-stat"><strong>${s.contributions}</strong><span>Contributions</span></div>
-        <div class="profile-stat"><strong>${s.green}</strong><span>Green cards</span></div>
-        <div class="profile-stat"><strong>${s.yellow}</strong><span>Yellow cards</span></div>
+    <p class="match-scorers">
+      <strong>Goals:</strong> ${scorers}
+    </p>
+  `;
+}
+
+function renderLatestResult() {
+  const container = $("#latestResult");
+  if (!container) return;
+
+  const latest = TEAM.results[TEAM.results.length - 1];
+
+  if (!latest) {
+    container.innerHTML = `
+      <p class="no-records">No match results have been recorded yet.</p>
+    `;
+    return;
+  }
+
+  container.innerHTML = `
+    ${renderMatchup(latest)}
+    <p class="match-meta">Full-time result · ${escapeHTML(latest.outcome)}</p>
+  `;
+}
+
+function renderNextFixture() {
+  const container = $("#nextFixture");
+  if (!container) return;
+
+  // Use the next upcoming fixture based on the South African calendar.
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  const next = TEAM.fixtures
+    .map((fixture) => ({
+      ...fixture,
+      parsedDate: new Date(
+        Number(fixture.date.slice(0, 4)),
+        Number(fixture.date.slice(5, 7)) - 1,
+        Number(fixture.date.slice(8, 10))
+      )
+    }))
+    .filter((fixture) => fixture.parsedDate >= today)
+    .sort((a, b) => a.parsedDate - b.parsedDate)[0];
+
+  if (!next) {
+    container.innerHTML = `
+      <h3 class="fixture-opponent">No upcoming fixtures</h3>
+      <p class="fixture-venue">Check back when the next schedule is added.</p>
+    `;
+    return;
+  }
+
+  const date = formatDate(next.date);
+
+  container.innerHTML = `
+    <p class="fixture-date-large">${escapeHTML(date.short)}</p>
+    <h3 class="fixture-opponent">${escapeHTML(next.opponent)}</h3>
+    <p class="fixture-time">${escapeHTML(date.full)} · ${escapeHTML(next.time)}</p>
+    <p class="fixture-venue">${escapeHTML(TEAM.venue)}</p>
+  `;
+}
+
+function renderResultsTable() {
+  const container = $("#resultsTable");
+  if (!container) return;
+
+  const results = [...TEAM.results].reverse();
+
+  if (!results.length) {
+    container.innerHTML = `
+      <tr><td colspan="4">No results recorded yet.</td></tr>
+    `;
+    return;
+  }
+
+  container.innerHTML = results.map((match) => {
+    const result = `${number(match.teamGoals)} – ${number(match.opponentGoals)}`;
+    const scorers = match.scorers.length
+      ? match.scorers.join(", ")
+      : "None recorded";
+
+    return `
+      <tr>
+        <td class="opponent-name">${escapeHTML(match.opponent)}</td>
+        <td class="result-score ${outcomeClass(match.outcome)}">${escapeHTML(result)}</td>
+        <td><span class="${outcomeClass(match.outcome)}">${escapeHTML(match.outcome)}</span></td>
+        <td class="result-scorers">${escapeHTML(scorers)}</td>
+      </tr>
+    `;
+  }).join("");
+}
+
+function renderFixturesTable() {
+  const container = $("#fixturesTable");
+  if (!container) return;
+
+  const fixtures = [...TEAM.fixtures].sort((a, b) =>
+    a.date.localeCompare(b.date)
+  );
+
+  if (!fixtures.length) {
+    container.innerHTML = `
+      <tr><td colspan="4">No upcoming fixtures recorded.</td></tr>
+    `;
+    return;
+  }
+
+  container.innerHTML = fixtures.map((fixture) => {
+    const date = formatDate(fixture.date);
+
+    return `
+      <tr>
+        <td>
+          <strong>${escapeHTML(date.short)}</strong>
+          <span class="subtle-label"> · ${escapeHTML(date.weekday)}</span>
+        </td>
+        <td>${escapeHTML(fixture.time)}</td>
+        <td class="opponent-name">${escapeHTML(fixture.opponent)}</td>
+        <td class="venue-cell">${escapeHTML(TEAM.venue)}</td>
+      </tr>
+    `;
+  }).join("");
+}
+
+function renderMatches() {
+  renderLatestResult();
+  renderNextFixture();
+  renderResultsTable();
+  renderFixturesTable();
+}
+
+
+/* =========================================
+   SQUAD & PLAYER PROFILES
+   ========================================= */
+
+function renderPlayers(searchTerm = "") {
+  const container = $("#playersGrid");
+  if (!container) return;
+
+  const term = searchTerm.trim().toLowerCase();
+
+  const filtered = TEAM.players.filter((player) =>
+    player.name.toLowerCase().includes(term)
+  );
+
+  setText("#playerCount", `${filtered.length} PLAYER${filtered.length === 1 ? "" : "S"}`);
+
+  container.innerHTML = filtered.map((player) => `
+    <article
+      class="player-card"
+      tabindex="0"
+      role="button"
+      data-player="${escapeHTML(player.name)}"
+      aria-label="View ${escapeHTML(player.name)}'s profile"
+    >
+      <div class="player-avatar">${escapeHTML(initials(player.name))}</div>
+      <h3 class="player-name">${escapeHTML(player.name)}</h3>
+      <span class="player-subtitle">Temu Ballers</span>
+
+      <div class="player-mini-stats">
+        <div class="player-mini-stat">
+          <strong>${number(player.goals)}</strong>
+          <span>Goals</span>
+        </div>
+        <div class="player-mini-stat">
+          <strong>${number(player.assists)}</strong>
+          <span>Assists</span>
+        </div>
+        <div class="player-mini-stat">
+          <strong>${number(player.appearances)}</strong>
+          <span>Apps</span>
+        </div>
       </div>
-      <p style="font-size:11px;margin-top:17px">
-        Player statistics reflect the current Temu Ballers dataset.
-      </p>
+
+      <span class="player-card-cta">View profile ↗</span>
+    </article>
+  `).join("");
+
+  const empty = $("#playersEmpty");
+  if (empty) empty.hidden = filtered.length !== 0;
+}
+
+function openPlayerProfile(name) {
+  const player = TEAM.players.find((item) => item.name === name);
+  if (!player) return;
+
+  const dialog = $("#playerDialog");
+  const profile = $("#playerProfile");
+
+  if (!dialog || !profile) return;
+
+  profile.innerHTML = `
+    <div class="dialog-player-top">
+      <div class="player-avatar">${escapeHTML(initials(player.name))}</div>
+      <p class="eyebrow">TEMU BALLERS · PLAYER PROFILE</p>
+      <h2>${escapeHTML(player.name)}</h2>
+      <p>Season ${TEAM.season}</p>
+    </div>
+
+    <div class="profile-stat-grid">
+      <div class="profile-stat">
+        <strong>${number(player.appearances)}</strong>
+        <span>Appearances</span>
+      </div>
+      <div class="profile-stat">
+        <strong>${number(player.goals)}</strong>
+        <span>Goals scored</span>
+      </div>
+      <div class="profile-stat">
+        <strong>${number(player.assists)}</strong>
+        <span>Assists</span>
+      </div>
+      <div class="profile-stat">
+        <strong>${number(player.green)}</strong>
+        <span>Green cards</span>
+      </div>
+      <div class="profile-stat">
+        <strong>${number(player.yellow)}</strong>
+        <span>Yellow cards</span>
+      </div>
+      <div class="profile-stat">
+        <strong>R${number(TEAM.fines[player.name])}</strong>
+        <span>Recorded fines</span>
+      </div>
     </div>
   `;
 
   if (typeof dialog.showModal === "function") {
-    if (!dialog.open) dialog.showModal();
+    dialog.showModal();
   } else {
     dialog.setAttribute("open", "");
   }
 }
 
-function setupPlayerProfiles() {
-  document.addEventListener("click", event => {
-    const button = event.target.closest("[data-player]");
-    if (!button) return;
+function setupPlayerCards() {
+  const container = $("#playersGrid");
+  if (!container) return;
 
-    openPlayerProfile(button.dataset.player);
+  container.addEventListener("click", (event) => {
+    const card = event.target.closest("[data-player]");
+    if (card) openPlayerProfile(card.dataset.player);
   });
 
-  const dialog = $("#playerDialog");
-  const close = $("#closeDialog");
+  container.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
 
-  close?.addEventListener("click", () => {
-    if (dialog?.open) dialog.close();
-    else dialog?.removeAttribute("open");
+    const card = event.target.closest("[data-player]");
+    if (!card) return;
+
+    event.preventDefault();
+    openPlayerProfile(card.dataset.player);
   });
 
-  dialog?.addEventListener("click", event => {
-    if (event.target === dialog && dialog.open) dialog.close();
+  $("#playerSearch")?.addEventListener("input", (event) => {
+    renderPlayers(event.target.value);
+  });
+
+  $("#closeDialog")?.addEventListener("click", () => {
+    const dialog = $("#playerDialog");
+
+    if (dialog?.open && typeof dialog.close === "function") {
+      dialog.close();
+    } else {
+      dialog?.removeAttribute("open");
+    }
+  });
+
+  $("#playerDialog")?.addEventListener("click", (event) => {
+    const dialog = $("#playerDialog");
+    if (event.target === dialog && typeof dialog.close === "function") {
+      dialog.close();
+    }
   });
 }
 
 
-/* =====================================================
+/* =========================================
    LEADERBOARDS
-   Every player is included, even on zero.
-   ===================================================== */
+   ========================================= */
 
-function renderLeaderboard(metric, targetId) {
-  const mount = document.getElementById(targetId);
-  if (!mount) return;
+function renderLeaderboard(containerSelector, property, label) {
+  const container = $(containerSelector);
+  if (!container) return;
 
-  mount.innerHTML = sortPlayers(metric).map((player, index) => {
-    const stats = getStats(player);
+  const ranked = [...TEAM.players].sort((a, b) =>
+    number(b[property]) - number(a[property]) ||
+    a.name.localeCompare(b.name)
+  );
 
-    return `
-      <div class="leader-row">
-        <span>${String(index + 1).padStart(2, "0")}</span>
-        <strong>${safeText(player.name)}</strong>
-        <b>${stats[metric]}</b>
-      </div>
-    `;
-  }).join("");
+  container.innerHTML = `
+    <div class="leaderboard-list">
+      ${ranked.map((player, index) => `
+        <div class="leaderboard-row">
+          <span class="leaderboard-rank">${String(index + 1).padStart(2, "0")}</span>
+          <div class="leaderboard-player">
+            <strong>${escapeHTML(player.name)}</strong>
+            <small>${escapeHTML(label)}</small>
+          </div>
+          <span class="leaderboard-value">${number(player[property])}</span>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderLeaderboards() {
+  renderLeaderboard("#goalsLeaderboard", "goals", "Goals scored");
+  renderLeaderboard("#assistsLeaderboard", "assists", "Assists made");
 }
 
 
-/* =====================================================
-   FULL SQUAD STATISTICS TABLE
-   ===================================================== */
+/* =========================================
+   FULL STATISTICS TABLE
+   ========================================= */
 
 function renderStatistics() {
-  const table = $("#statsTable");
-  if (!table) return;
+  const container = $("#statsTable");
+  if (!container) return;
 
-  const search = $("#statsSearch");
-  const sortSelect = $("#statsSort");
+  const search = ($("#statsSearch")?.value || "").trim().toLowerCase();
+  const sortBy = $("#statsSort")?.value || "goals";
 
-  let activeSort = "goals";
-  let query = "";
+  const filtered = TEAM.players.filter((player) =>
+    player.name.toLowerCase().includes(search)
+  );
 
-  function draw() {
-    let players = TEAM.players.filter(player =>
-      player.name.toLowerCase().includes(query)
-    );
+  filtered.sort((a, b) => {
+    if (sortBy === "name") {
+      return a.name.localeCompare(b.name);
+    }
 
-    players = players.sort((a, b) => {
-      if (activeSort === "name") {
-        return a.name.localeCompare(b.name);
-      }
+    return number(b[sortBy]) - number(a[sortBy]) ||
+      a.name.localeCompare(b.name);
+  });
 
-      const A = getStats(a);
-      const B = getStats(b);
-
-      return B[activeSort] - A[activeSort]
-        || B.appearances - A.appearances
-        || a.name.localeCompare(b.name);
-    });
-
-    table.innerHTML = players.map((player, index) => {
-      const s = getStats(player);
-
-      return `
-        <tr>
-          <td class="rank">${index + 1}</td>
-          <td>
-            <button class="table-player-button" type="button"
-              data-player="${safeText(player.name)}">
-              ${safeText(player.name)}
-            </button>
-          </td>
-          <td class="numeric">${s.appearances}</td>
-          <td class="numeric">${s.goals}</td>
-          <td class="numeric">${s.assists}</td>
-          <td class="numeric">${s.contributions}</td>
-          <td class="numeric">${s.green}</td>
-          <td class="numeric">${s.yellow}</td>
-        </tr>
-      `;
-    }).join("") || `
-      <tr><td colspan="8">No players match your search.</td></tr>
+  if (!filtered.length) {
+    container.innerHTML = `
+      <tr><td colspan="6">No players match your search.</td></tr>
     `;
+    return;
   }
 
-  search?.addEventListener("input", () => {
-    query = search.value.trim().toLowerCase();
-    draw();
-  });
+  container.innerHTML = filtered.map((player) => `
+    <tr>
+      <td class="table-player-name">${escapeHTML(player.name)}</td>
+      <td><span class="stats-number">${number(player.appearances)}</span></td>
+      <td><span class="stats-number orange">${number(player.goals)}</span></td>
+      <td><span class="stats-number">${number(player.assists)}</span></td>
+      <td><span class="stats-number card-green">${number(player.green)}</span></td>
+      <td><span class="stats-number card-yellow">${number(player.yellow)}</span></td>
+    </tr>
+  `).join("");
+}
 
-  sortSelect?.addEventListener("change", () => {
-    activeSort = sortSelect.value;
-    draw();
-  });
-
-  draw();
+function setupStatisticsControls() {
+  $("#statsSearch")?.addEventListener("input", renderStatistics);
+  $("#statsSort")?.addEventListener("change", renderStatistics);
 }
 
 
-/* =====================================================
+/* =========================================
    CLUB RECORDS
-   ===================================================== */
+   ========================================= */
 
 function renderRecords() {
-  const greenTotal = TEAM.players.reduce(
-    (sum, player) => sum + getStats(player).green, 0
-  );
+  const greenCards = sum(TEAM.players, "green");
+  const yellowCards = sum(TEAM.players, "yellow");
+  const injuryCount = TEAM.injuries.length;
 
-  const yellowTotal = TEAM.players.reduce(
-    (sum, player) => sum + getStats(player).yellow, 0
-  );
+  // Current rule: one shot per green card and yellow card.
+  // Other rule-related shots are not counted without actual records.
+  const totalShots = greenCards + yellowCards;
 
-  $("#greenCards").textContent = greenTotal;
-  $("#yellowCards").textContent = yellowTotal;
-  $("#injuryCount").textContent = TEAM.injuries.length;
+  setText("#greenCards", greenCards);
+  setText("#yellowCards", yellowCards);
+  setText("#injuryCount", injuryCount);
+  setText("#totalShots", totalShots);
+  setText("#teamOfWeekPlayer", TEAM.teamOfTheWeek.player);
 
-  // Current shot rule: one shot per recorded card.
-  $("#totalShots").textContent = greenTotal + yellowTotal;
+  const injuriesContainer = $("#injuriesList");
 
-  $("#teamOfWeekPlayer").textContent =
-    TEAM.teamOfWeek.player.toUpperCase();
-
-  const injuries = $("#injuriesList");
-
-  if (injuries) {
-    injuries.innerHTML = TEAM.injuries.length
-      ? TEAM.injuries.map(injury => `
-          <p>
-            <strong>${safeText(injury.player)}</strong>
-            — ${safeText(injury.injury)}
-            — ${safeText(injury.status)}
-          </p>
-        `).join("")
-      : "<p>0 injuries recorded.</p>";
-  }
-
-  const rules = $("#rulesList");
-
-  if (rules) {
-    rules.innerHTML = TEAM.rules.map(rule =>
-      `<li>${safeText(rule)}</li>`
-    ).join("");
-  }
-
-  const fines = $("#finesTable");
-
-  if (fines) {
-    fines.innerHTML = TEAM.players.map(player => {
-      const s = getStats(player);
-
-      return `
-        <tr>
-          <td>${safeText(player.name)}</td>
-          <td>${s.green}</td>
-          <td>${s.yellow}</td>
-          <td>0</td>
-        </tr>
+  if (injuriesContainer) {
+    if (!TEAM.injuries.length) {
+      injuriesContainer.innerHTML = `
+        <p class="no-records">No injuries currently recorded.</p>
       `;
-    }).join("");
+    } else {
+      injuriesContainer.innerHTML = `
+        <div class="injury-list">
+          ${TEAM.injuries.map((injury) => `
+            <div class="injury-item">
+              <div class="injury-person">
+                <strong>${escapeHTML(injury.name)}</strong>
+                <small>${escapeHTML(injury.injury)}</small>
+              </div>
+              <span class="injury-status">${escapeHTML(injury.status)}</span>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+  }
+
+  const finesContainer = $("#finesTable");
+
+  if (finesContainer) {
+    finesContainer.innerHTML = TEAM.players.map((player) => `
+      <tr>
+        <td class="table-player-name">${escapeHTML(player.name)}</td>
+        <td>R${number(TEAM.fines[player.name])}</td>
+      </tr>
+    `).join("");
+  }
+
+  const rulesContainer = $("#rulesList");
+
+  if (rulesContainer) {
+    rulesContainer.innerHTML = TEAM.rules.map((rule, index) => `
+      <li>
+        <span class="rule-index">${String(index + 1).padStart(2, "0")}</span>
+        <span>${escapeHTML(rule)}</span>
+      </li>
+    `).join("");
   }
 }
 
 
-/* =====================================================
-   NAVIGATION
-   ===================================================== */
+/* =========================================
+   NAVIGATION & INITIALISATION
+   ========================================= */
 
 function setupNavigation() {
-  const toggle = $("#menuToggle");
+  const menuToggle = $("#menuToggle");
   const nav = $("#mainNav");
+  const navLinks = [...document.querySelectorAll(".nav-link")];
 
-  if (toggle && nav) {
-    toggle.addEventListener("click", () => {
-      const open = nav.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", String(open));
-      toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
-      toggle.textContent = open ? "×" : "☰";
+  if (menuToggle && nav) {
+    menuToggle.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("open");
+
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation" : "Open navigation"
+      );
     });
 
-    $$(".nav-link", nav).forEach(link => {
+    navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         nav.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
-        toggle.setAttribute("aria-label", "Open navigation");
-        toggle.textContent = "☰";
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation");
       });
     });
   }
 
-  const sections = $$(".page-section, main > .section[id]");
+  const sections = [...document.querySelectorAll("main section[id]")];
 
-  if ("IntersectionObserver" in window && sections.length) {
-    const observer = new IntersectionObserver(entries => {
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
       const visible = entries
-        .filter(entry => entry.isIntersecting)
+        .filter((entry) => entry.isIntersecting)
         .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
       if (!visible) return;
 
-      const id = visible.target.id;
+      navLinks.forEach((link) => {
+        const active = link.getAttribute("href") === `#${visible.target.id}`;
 
-      $$(".nav-link").forEach(link => {
-        const active = link.getAttribute("href") === `#${id}`;
         link.classList.toggle("active", active);
+
+        if (active) {
+          link.setAttribute("aria-current", "location");
+        } else {
+          link.removeAttribute("aria-current");
+        }
       });
     }, {
-      rootMargin: "-20% 0px -65% 0px",
-      threshold: [0, 0.1, 0.3]
+      rootMargin: "-20% 0px -60% 0px",
+      threshold: [0, 0.15, 0.35]
     });
 
-    sections.forEach(section => observer.observe(section));
+    sections.forEach((section) => observer.observe(section));
   }
 }
 
-
-/* =====================================================
-   START THE WEBSITE
-   ===================================================== */
-
-function initialiseTemuBallers() {
-  $("#currentYear").textContent = new Date().getFullYear();
+function initialiseWebsite() {
+  setText("#currentYear", new Date().getFullYear());
 
   renderSeasonStats();
   renderMatches();
   renderPlayers();
-
-  renderLeaderboard("goals", "goalsLeaderboard");
-  renderLeaderboard("assists", "assistsLeaderboard");
-
+  renderLeaderboards();
   renderStatistics();
   renderRecords();
 
-  setupPlayerProfiles();
+  setupPlayerCards();
+  setupStatisticsControls();
   setupNavigation();
 }
 
-initialiseTemuBallers();
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initialiseWebsite);
+} else {
+  initialiseWebsite();
+}
+
