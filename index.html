@@ -2,1072 +2,370 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0b1220" />
-  <title>Temu Ballers | Official Team Website</title>
-  <meta name="description" content="The official Temu Ballers team website. Fixtures, results, player statistics and team records." />
-
-  <style>
-    :root {
-      --bg: #080d17;
-      --surface: #101827;
-      --surface-light: #172235;
-      --border: #263247;
-      --text: #f4f6fb;
-      --muted: #929db0;
-      --accent: #d6b66d;
-      --green: #6ed6a0;
-      --radius: 14px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 95px;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: Inter, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font: inherit;
-    }
-
-    .container {
-      width: min(1120px, calc(100% - 40px));
-      margin: auto;
-    }
-
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(8, 13, 23, 0.94);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-inner {
-      min-height: 74px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      white-space: nowrap;
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      background: var(--accent);
-      color: #101827;
-      border-radius: 11px;
-      font-size: 17px;
-      font-weight: 900;
-    }
-
-    .brand small {
-      display: block;
-      color: var(--muted);
-      font-size: 10px;
-      letter-spacing: 2px;
-      font-weight: 600;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 25px;
-      font-size: 13px;
-      color: #b5bfd0;
-    }
-
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    .hero {
-      padding: 86px 0 58px;
-      background:
-        radial-gradient(ellipse at 85% 20%,
-          rgba(214,182,109,0.10), transparent 38%),
-        radial-gradient(ellipse at 10% 80%,
-          rgba(65,100,155,0.12), transparent 40%);
-    }
-
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--accent);
-      text-transform: uppercase;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 2.5px;
-      margin-bottom: 18px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 25px;
-      height: 2px;
-      background: var(--accent);
-    }
-
-    .hero h1 {
-      max-width: 720px;
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 1.04;
-      letter-spacing: -3px;
-      font-weight: 850;
-    }
-
-    .hero h1 span {
-      color: var(--accent);
-    }
-
-    .hero-description {
-      max-width: 530px;
-      color: var(--muted);
-      margin-top: 22px;
-      font-size: 15px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
-    }
-
-    .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 45px;
-      padding: 0 19px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 750;
-      cursor: pointer;
-      border: 1px solid var(--border);
-      transition: 0.2s ease;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #101827;
-      border-color: var(--accent);
-    }
-
-    .btn-primary:hover {
-      background: #ebcf8b;
-    }
-
-    .btn-secondary {
-      background: var(--surface);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--accent);
-    }
-
-    .section {
-      padding: 48px 0;
-    }
-
-    .section-heading {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 23px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(23px, 3vw, 30px);
-      letter-spacing: -0.8px;
-      line-height: 1.2;
-    }
-
-    .section-heading p {
-      margin-top: 7px;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .text-link {
-      font-size: 12px;
-      color: var(--accent);
-      font-weight: 750;
-      white-space: nowrap;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-
-    .stat-card {
-      padding: 23px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      border-radius: var(--radius);
-    }
-
-    .stat-label {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .stat-number {
-      margin-top: 10px;
-      font-size: 35px;
-      line-height: 1.1;
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
-
-    .stat-note {
-      margin-top: 10px;
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .positive {
-      color: var(--green);
-    }
-
-    .panel {
-      border: 1px solid var(--border);
-      background: var(--surface);
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-
-    .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      padding: 19px 22px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .panel-header h3 {
-      font-size: 15px;
-    }
-
-    .panel-header span {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .results-list {
-      padding: 0 22px;
-    }
-
-    .result-row {
-      min-height: 88px;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 14px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .result-row:last-child {
-      border-bottom: 0;
-    }
-
-    .opponent {
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .opponent:last-child {
-      text-align: right;
-    }
-
-    .score-wrap {
-      text-align: center;
-      min-width: 95px;
-    }
-
-    .score {
-      font-size: 23px;
-      font-weight: 850;
-      letter-spacing: 1px;
-    }
-
-    .result-status {
-      display: block;
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-top: 2px;
-    }
-
-    .draw {
-      color: var(--accent);
-    }
-
-    .win {
-      color: var(--green);
-    }
-
-    .columns {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 22px;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      white-space: nowrap;
-    }
-
-    th {
-      padding: 14px 18px;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 750;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      background: rgba(255,255,255,0.015);
-    }
-
-    td {
-      padding: 16px 18px;
-      border-top: 1px solid var(--border);
-      font-size: 12px;
-    }
-
-    .player-name {
-      font-weight: 750;
-    }
-
-    .rank {
-      color: var(--muted);
-      width: 30px;
-    }
-
-    .goal-number {
-      color: var(--accent);
-      font-weight: 850;
-      font-size: 15px;
-    }
-
-    .player-initials {
-      display: inline-grid;
-      place-items: center;
-      width: 30px;
-      height: 30px;
-      border-radius: 8px;
-      background: var(--surface-light);
-      border: 1px solid var(--border);
-      font-size: 10px;
-      font-weight: 800;
-      margin-right: 9px;
-    }
-
-    .form-row {
-      display: flex;
-      gap: 9px;
-      padding: 23px;
-    }
-
-    .form-item {
-      flex: 1;
-      min-width: 0;
-      padding: 14px 5px;
-      border-radius: 10px;
-      background: var(--surface-light);
-      text-align: center;
-    }
-
-    .form-item strong {
-      display: block;
-      font-size: 25px;
-    }
-
-    .form-item small {
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    .form-summary {
-      padding: 0 23px 22px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .rules-list {
-      list-style: none;
-      padding: 4px 22px;
-    }
-
-    .rules-list li {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      padding: 15px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 13px;
-    }
-
-    .rules-list li:last-child {
-      border-bottom: 0;
-    }
-
-    .rule-index {
-      display: grid;
-      place-items: center;
-      width: 26px;
-      height: 26px;
-      flex-shrink: 0;
-      border-radius: 7px;
-      background: var(--surface-light);
-      color: var(--accent);
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    .rules-list small {
-      display: block;
-      color: var(--muted);
-      margin-top: 3px;
-      font-size: 11px;
-    }
-
-    .notice {
-      margin: 18px 22px 22px;
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .empty-state {
-      padding: 26px 22px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .footer {
-      border-top: 1px solid var(--border);
-      margin-top: 30px;
-      padding: 27px 0;
-    }
-
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .footer strong {
-      color: var(--text);
-    }
-
-    @media (max-width: 760px) {
-      .nav-inner {
-        min-height: 68px;
-        flex-wrap: wrap;
-        padding: 12px 0;
-      }
-
-      .nav-links {
-        width: 100%;
-        gap: 20px;
-        overflow-x: auto;
-        padding-bottom: 4px;
-      }
-
-      .hero {
-        padding: 60px 0 35px;
-      }
-
-      .hero h1 {
-        letter-spacing: -2px;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-      }
-
-      .stat-card {
-        padding: 17px;
-      }
-
-      .stat-number {
-        font-size: 30px;
-      }
-
-      .columns {
-        grid-template-columns: 1fr;
-      }
-
-      .section {
-        padding: 34px 0;
-      }
-
-      .section-heading {
-        align-items: start;
-      }
-
-      .result-row {
-        gap: 8px;
-      }
-
-      .opponent {
-        font-size: 11px;
-      }
-
-      .score-wrap {
-        min-width: 77px;
-      }
-
-      .results-list {
-        padding: 0 14px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      .container {
-        width: calc(100% - 26px);
-      }
-
-      .form-row {
-        padding: 14px;
-      }
-
-      .stat-card {
-        padding: 14px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a1020">
+<title>Temu Ballers | Official Club</title>
+<style>
+:root {
+  --bg:#090e19;--panel:#111a2b;--panel2:#172238;
+  --line:#28354b;--text:#f4f6fb;--muted:#96a2b6;
+  --gold:#d9b96e;--green:#75d7a0;--red:#f28a8a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{background:var(--bg);color:var(--text);
+font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.wrap{width:min(1120px,calc(100% - 32px));margin:auto}
+header{position:sticky;top:0;z-index:10;background:#090e19f2;
+backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{min-height:72px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding:10px 0}
+.brand{display:flex;align-items:center;gap:11px;font-weight:850;letter-spacing:.3px}
+.logo{width:42px;height:42px;background:var(--gold);color:#101827;border-radius:10px;display:grid;place-items:center;font-weight:950}
+.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:2px}
+.links{display:flex;gap:19px;overflow-x:auto;max-width:100%;font-size:12px;color:#c1cada;padding:5px 0}
+.links a{white-space:nowrap}.links a:hover{color:var(--gold)}
+.hero{padding:74px 0 48px;background:radial-gradient(ellipse at 85% 15%,#d9b96e17,transparent 40%),radial-gradient(ellipse at 5% 80%,#33558c20,transparent 40%)}
+.eyebrow{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:800}
+h1{font-size:clamp(42px,7vw,76px);line-height:1.04;letter-spacing:-3px;margin:17px 0}
+h1 span{color:var(--gold)}
+.sub{color:var(--muted);font-size:14px;max-width:550px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:8px;padding:10px 15px;font-size:12px;font-weight:750;background:var(--panel);color:var(--text)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:#111827}
+.btn:hover{filter:brightness(1.1)}
+section{padding:37px 0}
+.heading{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:19px}
+h2{font-size:25px;letter-spacing:-.7px;line-height:1.2}
+h3{font-size:14px}
+.heading p,.muted{font-size:12px;color:var(--muted);margin-top:5px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.card,.panel{background:var(--panel);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.stat{padding:19px}
+.stat label{color:var(--muted);font-size:11px}
+.big{font-size:34px;font-weight:850;line-height:1.3;margin:5px 0}
+.gold-text{color:var(--gold)}.green{color:var(--green)}.red{color:var(--red)}
+.panel-head{padding:17px 19px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line)}
+.panel-head small{color:var(--muted);font-size:10px}
+.cols{display:grid;grid-template-columns:1.1fr .9fr;gap:17px}
+.stack{display:grid;gap:17px}
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;text-align:left;white-space:nowrap}
+th{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:13px 15px}
+td{font-size:12px;padding:14px 15px;border-top:1px solid var(--line)}
+.rank{color:var(--muted);width:34px}
+.name{font-weight:750}
+.player-link{cursor:pointer}.player-link:hover{color:var(--gold)}
+.initial{display:inline-grid;place-items:center;width:31px;height:31px;background:var(--panel2);border:1px solid var(--line);border-radius:8px;margin-right:9px;font-size:10px;font-weight:800}
+.tag{display:inline-block;border-radius:5px;padding:3px 7px;font-size:9px;font-weight:800;background:var(--panel2);color:var(--muted)}
+.result{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:18px;border-bottom:1px solid var(--line)}
+.result:last-child{border-bottom:0}
+.result .op{font-size:12px;font-weight:750}.result .op:last-child{text-align:right}
+.score{text-align:center;font-size:22px;font-weight:900;white-space:nowrap}
+.result small{display:block;text-align:center;font-size:9px;letter-spacing:1px;text-transform:uppercase}
+.form{display:flex;gap:8px;padding:19px}
+.form-item{flex:1;background:var(--panel2);border-radius:9px;text-align:center;padding:12px 3px}
+.form-item b{font-size:22px;display:block}.form-item small{font-size:9px;color:var(--muted)}
+.note{padding:0 19px 18px;color:var(--muted);font-size:11px}
+.list{list-style:none;padding:4px 18px}
+.list li{padding:13px 0;border-bottom:1px solid var(--line);font-size:12px}
+.list li:last-child{border:0}
+.list small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.empty{padding:22px;text-align:center;color:var(--muted);font-size:12px}
+.player-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.player-card{padding:17px;cursor:pointer;transition:border-color .2s}
+.player-card:hover{border-color:var(--gold)}
+.player-card .initial{width:42px;height:42px;font-size:12px;margin-bottom:13px}
+.player-card h3{font-size:15px}
+.player-card p{font-size:11px;color:var(--muted);margin-top:3px}
+.player-mini{display:flex;justify-content:space-between;border-top:1px solid var(--line);margin-top:14px;padding-top:12px;font-size:11px}
+.player-mini b{color:var(--gold)}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap}
+.toolbar input,.toolbar select,.field input,.field select,.field textarea{background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:7px;padding:10px;width:100%;font-size:12px}
+.toolbar input{max-width:230px}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:18px}
+.field{display:grid;gap:5px;font-size:11px;color:var(--muted)}
+.field.full{grid-column:1/-1}
+.admin-actions{display:flex;gap:8px;flex-wrap:wrap;padding:0 18px 18px}
+footer{border-top:1px solid var(--line);padding:25px 0;margin-top:25px;color:var(--muted);font-size:11px}
+.footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:15px;padding:0;width:min(480px,calc(100% - 28px));margin:auto}
+dialog::backdrop{background:#000b;backdrop-filter:blur(4px)}
+.modal-content{padding:23px}
+.modal-top{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.modal-close{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:7px;padding:5px 10px}
+.profile-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:20px 0}
+.profile-stats div{background:var(--panel2);padding:13px;border-radius:9px}
+.profile-stats small{display:block;color:var(--muted);font-size:10px}
+.profile-stats b{font-size:23px}
+hr{border:0;border-top:1px solid var(--line);margin:17px 0}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}.cols{grid-template-columns:1fr}.player-grid{grid-template-columns:repeat(2,1fr)}.hero{padding:55px 0 35px}.links{gap:15px}h1{letter-spacing:-2px}}
+@media(max-width:420px){.player-grid{grid-template-columns:1fr 1fr}.stat{padding:14px}.big{font-size:29px}.result{gap:6px;padding:15px 8px}.result .op{font-size:10px}.score{font-size:19px}}
+</style>
 </head>
-
 <body>
-  <header class="navbar">
-    <div class="container nav-inner">
-      <a class="brand" href="#home" aria-label="Temu Ballers home">
-        <div class="brand-mark">TB</div>
-        <div>
-          TEMU BALLERS
-          <small>OFFICIAL TEAM SITE</small>
-        </div>
-      </a>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home"><span class="logo">TB</span><span>TEMU BALLERS<small>OFFICIAL TEAM WEBSITE</small></span></a>
+    <nav class="links">
+      <a href="#home">Home</a><a href="#results">Results</a><a href="#squad">Squad</a>
+      <a href="#statistics">Statistics</a><a href="#fixtures">Fixtures</a><a href="#fines">Fines</a><a href="#rules">Rules</a>
+    </nav>
+  </div>
+</header>
 
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#home">Home</a>
-        <a href="#results">Results</a>
-        <a href="#squad">Squad</a>
-        <a href="#statistics">Statistics</a>
-        <a href="#fixtures">Fixtures</a>
-        <a href="#rules">Rules & Fines</a>
-      </nav>
-    </div>
-  </header>
+<main>
+<section class="hero" id="home"><div class="wrap">
+  <div class="eyebrow">Five-a-side football</div>
+  <h1>ONE TEAM.<br><span>ONE PURPOSE.</span></h1>
+  <p class="sub">Welcome to Temu Ballers. Follow our matches, track every goal and assist, and keep up with the squad throughout the season.</p>
+  <div class="actions"><a class="btn gold" href="#statistics">Explore statistics</a><a class="btn" href="#results">View results</a></div>
+</div></section>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="eyebrow">Five-a-side football</div>
-        <h1>ONE TEAM.<br /><span>ONE PURPOSE.</span></h1>
-        <p class="hero-description">
-          Welcome to Temu Ballers. Follow our results, track every goal,
-          recognise our top performers and keep up with the team.
-        </p>
-        <div class="hero-actions">
-          <a href="#statistics" class="btn btn-primary">View team statistics</a>
-          <a href="#results" class="btn btn-secondary">Match results</a>
-        </div>
-      </div>
-    </section>
+<section><div class="wrap">
+  <div class="heading"><div><h2>Season overview</h2><p>Our season, at a glance.</p></div></div>
+  <div class="grid">
+    <div class="card stat"><label>Played</label><div class="big" id="played">0</div><label>Matches completed</label></div>
+    <div class="card stat"><label>Goals scored</label><div class="big gold-text" id="goals">0</div><label>Team total</label></div>
+    <div class="card stat"><label>Points</label><div class="big" id="points">0</div><label>3 for a win · 1 for a draw</label></div>
+    <div class="card stat"><label>Goal difference</label><div class="big green" id="gd">0</div><label>Goals for minus against</label></div>
+  </div>
+</div></section>
 
-    <section class="section" aria-label="Season overview">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <h2>Season overview</h2>
-            <p>The numbers behind our opening two matches.</p>
-          </div>
-        </div>
+<section id="results"><div class="wrap">
+  <div class="heading"><div><h2>Latest results</h2><p>Match history and final scores.</p></div></div>
+  <div class="panel"><div class="panel-head"><h3>Match centre</h3><small id="match-count">0 MATCHES</small></div><div id="results-list"></div></div>
+</div></section>
 
-        <div class="stats-grid">
-          <article class="stat-card">
-            <div class="stat-label">Matches played</div>
-            <div class="stat-number" id="played">2</div>
-            <div class="stat-note">Games completed</div>
-          </article>
+<section id="statistics"><div class="wrap">
+  <div class="heading"><div><h2>Team statistics</h2><p>Performance, goals and assists.</p></div></div>
+  <div class="cols">
+    <div class="panel"><div class="panel-head"><h3>Golden Boot</h3><small>GOALS</small></div><div class="table-scroll"><table><thead><tr><th>#</th><th>Player</th><th>Goals</th></tr></thead><tbody id="scorers"></tbody></table></div></div>
+    <div class="panel"><div class="panel-head"><h3>Team form</h3><small>RECENT RESULTS</small></div><div class="form" id="form"></div><div class="note" id="form-note"></div></div>
+  </div>
+  <div class="cols" style="margin-top:17px">
+    <div class="panel"><div class="panel-head"><h3>Playmaker leaderboard</h3><small>ASSISTS</small></div><div class="table-scroll"><table><thead><tr><th>#</th><th>Player</th><th>Assists</th></tr></thead><tbody id="assists"></tbody></table></div><div class="empty" id="no-assists">Assists have not been recorded yet.</div></div>
+    <div class="panel"><div class="panel-head"><h3>Season record</h3><small>TEAM</small></div><ul class="list" id="record"></ul></div>
+  </div>
+</div></section>
 
-          <article class="stat-card">
-            <div class="stat-label">Goals scored</div>
-            <div class="stat-number" id="goals">5</div>
-            <div class="stat-note">Across all matches</div>
-          </article>
+<section id="squad"><div class="wrap">
+  <div class="heading"><div><h2>The squad</h2><p>Select a player to open their profile.</p></div><span class="tag" id="player-count">10 PLAYERS</span></div>
+  <div class="toolbar" style="margin-bottom:15px"><input id="search-player" placeholder="Search players..." aria-label="Search players"></div>
+  <div class="player-grid" id="players"></div>
+</div></section>
 
-          <article class="stat-card">
-            <div class="stat-label">League points</div>
-            <div class="stat-number" id="points">4</div>
-            <div class="stat-note">1 win · 1 draw</div>
-          </article>
+<section id="fixtures"><div class="wrap">
+  <div class="heading"><div><h2>Fixtures</h2><p>Upcoming matches and completed games.</p></div></div>
+  <div class="panel"><div class="panel-head"><h3>Upcoming matches</h3><small id="fixture-count">0 FIXTURES</small></div><div id="fixture-list" class="empty">Upcoming fixtures have not yet been confirmed for Temu Ballers.</div></div>
+  <p class="muted" style="margin-top:10px">Fixture dates and times should be confirmed against the official league schedule.</p>
+</div></section>
 
-          <article class="stat-card">
-            <div class="stat-label">Goal difference</div>
-            <div class="stat-number positive" id="difference">+1</div>
-            <div class="stat-note">5 scored · 4 conceded</div>
-          </article>
-        </div>
-      </div>
-    </section>
+<section id="fines"><div class="wrap">
+  <div class="heading"><div><h2>Fines register</h2><p>Track incidents, payments and balances.</p></div></div>
+  <div class="grid" style="margin-bottom:16px">
+    <div class="card stat"><label>Total fines issued</label><div class="big" id="fines-total">R0</div></div>
+    <div class="card stat"><label>Paid</label><div class="big green" id="fines-paid">R0</div></div>
+    <div class="card stat"><label>Outstanding</label><div class="big gold-text" id="fines-due">R0</div></div>
+    <div class="card stat"><label>Incidents</label><div class="big" id="fines-count">0</div></div>
+  </div>
+  <div class="panel"><div class="panel-head"><h3>Player fines</h3><small>RECORDED INCIDENTS</small></div>
+    <div class="table-scroll"><table><thead><tr><th>Player</th><th>Reason</th><th>Date</th><th>Amount</th><th>Status</th></tr></thead><tbody id="fines-list"></tbody></table></div>
+    <div class="empty" id="no-fines">No fines have been recorded yet. Confirm the amounts before adding incidents.</div>
+  </div>
+  <div class="panel" style="margin-top:16px"><div class="panel-head"><h3>Fine totals by player</h3><small>PAID / OUTSTANDING</small></div><div class="table-scroll"><table><thead><tr><th>Player</th><th>Total</th><th>Paid</th><th>Due</th></tr></thead><tbody id="fine-players"></tbody></table></div></div>
+</div></section>
 
-    <section class="section" id="results">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <h2>Latest results</h2>
-            <p>Our match history.</p>
-          </div>
-        </div>
+<section id="rules"><div class="wrap">
+  <div class="heading"><div><h2>Team rules</h2><p>Team standards and agreed penalties.</p></div></div>
+  <div class="panel"><div class="panel-head"><h3>Rules & discipline</h3><small>TEAM AGREEMENTS</small></div><ul class="list" id="rules-list"></ul>
+  <div style="padding:0 18px 18px"><p class="muted">Fine amounts and exact conditions must be agreed by the team before being enforced.</p></div></div>
+</div></section>
 
-        <div class="panel">
-          <div class="panel-header">
-            <h3>Match centre</h3>
-            <span>Season results</span>
-          </div>
+<section id="data-guide"><div class="wrap">
+  <div class="heading"><div><h2>Website data</h2><p>Maintain your team's information through GitHub.</p></div></div>
+  <div class="panel"><div class="panel-head"><h3>How to update the website</h3><small>GITHUB PAGES</small></div>
+    <ul class="list">
+      <li><strong>1. Open index.html</strong><small>Go to your repository and select the pencil icon.</small></li>
+      <li><strong>2. Find the TEAM DATA section</strong><small>Update players, fixtures, results, goals, assists or fines in the data object.</small></li>
+      <li><strong>3. Commit your changes</strong><small>Click Commit changes. GitHub Pages will publish the updated website.</small></li>
+    </ul>
+    <div class="empty">GitHub Pages is static hosting. The public website does not have a secure shared editing dashboard. Data edits must be committed to GitHub.</div>
+  </div>
+</div></section>
+</main>
 
-          <div class="results-list" id="results-list"></div>
-        </div>
-      </div>
-    </section>
+<footer><div class="wrap footer"><strong>TEMU BALLERS</strong><span>Built for the team · Updated throughout the season</span></div></footer>
 
-    <section class="section" id="statistics">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <h2>Player statistics</h2>
-            <p>Goals, assists and individual contributions.</p>
-          </div>
-          <a class="text-link" href="#squad">Full squad ↓</a>
-        </div>
+<dialog id="profile"><div class="modal-content"><div class="modal-top"><div><div class="eyebrow">Player profile</div><h2 id="profile-name" style="margin-top:8px"></h2></div><button class="modal-close" id="close-profile">Close</button></div><p class="muted" id="profile-sub"></p><div class="profile-stats" id="profile-stats"></div><div class="panel-head" style="padding:12px 0"><h3>Match contributions</h3></div><ul class="list" id="profile-goals" style="padding:0"></ul></div></dialog>
 
-        <div class="columns">
-          <div class="panel">
-            <div class="panel-header">
-              <h3>Golden Boot</h3>
-              <span>Goals scored</span>
-            </div>
+<script>
+/* =====================================================
+   TEMU BALLERS — TEAM DATA
+   Edit this section to update the whole website.
+   Save and commit index.html on GitHub to publish.
+   ===================================================== */
 
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Player</th>
-                    <th>Goals</th>
-                  </tr>
-                </thead>
-                <tbody id="top-scorers"></tbody>
-              </table>
-            </div>
-          </div>
+const DATA = {
+  players: [
+    {name:"Josh", goals:2, assists:0, appearances:2, yellow:0, green:0, position:"Not specified", number:null},
+    {name:"Ethan", goals:0, assists:0, appearances:0, yellow:0, green:0, position:"Not specified", number:null},
+    {name:"Josè", goals:0, assists:0, appearances:0, yellow:0, green:0, position:"Not specified", number:null},
+    {name:"Abdou", goals:0, assists:0, appearances:0, yellow:0, green:0, position:"Not specified", number:null},
+    {name:"Adam", goals:2, assists:0, appearances:2, yellow:0, green:0, position:"Not specified", number:null},
+    {name:"Alex", goals:0, assists:0, appearances:0, yellow:0, green:0, position:"Not specified", number:null},
+    {name:"Brandon", goals:0, assists:0, appearances:0, yellow:0, green:0, position:"Not specified", number:null},
+    {name:"Lathi", goals:0, assists:0, appearances:0, yellow:0, green:0, position:"Not specified", number:null},
+    {name:"Zack", goals:1, assists:0, appearances:1, yellow:0, green:0, position:"Not specified", number:null},
+    {name:"Manu", goals:0, assists:0, appearances:0, yellow:0, green:0, position:"Not specified", number:null}
+  ],
 
-          <div class="panel">
-            <div class="panel-header">
-              <h3>Team form</h3>
-              <span>Last 5 slots</span>
-            </div>
+  matches: [
+    {opponent:"Dark Knights", date:"", venue:"", team:3, opponentScore:3, scorers:["Josh","Zack","Adam"], assists:[], status:"D"},
+    {opponent:"FC Sparta", date:"", venue:"", team:2, opponentScore:1, scorers:["Josh","Adam"], assists:[], status:"W"}
+  ],
 
-            <div class="form-row" id="team-form"></div>
-            <div class="form-summary" id="form-summary"></div>
-          </div>
-        </div>
+  fixtures: [
+    // Add upcoming matches here after confirming they are Temu Ballers fixtures.
+    // Example:
+    // {opponent:"Team Name",date:"2026-11-04",time:"18:15",venue:"Fairview Action Arena",field:"Field 2"}
+  ],
 
-        <div class="columns" style="margin-top:22px">
-          <div class="panel">
-            <div class="panel-header">
-              <h3>Playmaker leaderboard</h3>
-              <span>Assists</span>
-            </div>
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Player</th>
-                    <th>Assists</th>
-                  </tr>
-                </thead>
-                <tbody id="top-assists"></tbody>
-              </table>
-            </div>
-            <div class="empty-state" id="assists-note">
-              Assists have not been recorded yet.
-            </div>
-          </div>
+  fines: [
+    // Example:
+    // {player:"Josh",reason:"Yellow card",date:"2026-11-04",amount:20,paid:false}
+  ],
 
-          <div class="panel">
-            <div class="panel-header">
-              <h3>Team records</h3>
-              <span>Season totals</span>
-            </div>
-            <ul class="rules-list" id="team-records">
-              <li>
-                <span class="rule-index">W</span>
-                <div>Wins <small id="wins-record">1 match won</small></div>
-              </li>
-              <li>
-                <span class="rule-index">D</span>
-                <div>Draws <small id="draws-record">1 match drawn</small></div>
-              </li>
-              <li>
-                <span class="rule-index">L</span>
-                <div>Losses <small id="losses-record">No losses recorded</small></div>
-              </li>
-              <li>
-                <span class="rule-index">CS</span>
-                <div>Clean sheets <small>Not yet recorded</small></div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+  rules: [
+    {title:"Yellow card",description:"Fine amount and conditions to be confirmed."},
+    {title:"Green card",description:"Fine amount and conditions to be confirmed."},
+    {title:"Injury",description:"Conditions and fine amount to be confirmed."},
+    {title:"Own goal",description:"Fine amount to be confirmed."},
+    {title:"Not scoring",description:"Conditions and fine amount to be confirmed."},
+    {title:"Missing an open goal",description:"Fine amount to be confirmed."},
+    {title:"Finishing below 4th place",description:"Everyone takes a shot. Additional conditions to be confirmed."}
+  ]
+};
 
-    <section class="section" id="squad">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <h2>The squad</h2>
-            <p>Every player counts.</p>
-          </div>
-          <span class="text-link" id="squad-count">10 PLAYERS</span>
-        </div>
+/* =====================================================
+   WEBSITE ENGINE — normally no edits needed below here
+   ===================================================== */
+const $ = s => document.querySelector(s);
+const esc = v => String(v ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const initials = n => n.split(/\s+/).map(x=>x[0]).join("").toUpperCase();
+const money = n => "R" + Number(n || 0).toLocaleString("en-ZA",{minimumFractionDigits:2,maximumFractionDigits:2});
+const total = (arr,key) => arr.reduce((s,x)=>s+Number(x[key]||0),0);
+const results = DATA.matches;
+const wins = results.filter(m=>m.status==="W").length;
+const draws = results.filter(m=>m.status==="D").length;
+const losses = results.filter(m=>m.status==="L").length;
+const goalsFor = total(results,"team");
+const goalsAgainst = total(results,"opponentScore");
+const difference = goalsFor-goalsAgainst;
+const points = wins*3+draws;
 
-        <div class="panel">
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Player</th>
-                  <th>Goals</th>
-                  <th>Assists</th>
-                </tr>
-              </thead>
-              <tbody id="squad-list"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
+function renderResults(){
+  $("#played").textContent=results.length;
+  $("#goals").textContent=goalsFor;
+  $("#points").textContent=points;
+  $("#gd").textContent=(difference>0?"+":"")+difference;
+  $("#match-count").textContent=results.length+" MATCHES";
+  $("#results-list").innerHTML=results.length ? results.slice().reverse().map(m=>`
+    <div class="result">
+      <div class="op">Temu Ballers</div>
+      <div><div class="score">${m.team} – ${m.opponentScore}</div><small class="${m.status==="W"?"green":m.status==="L"?"red":"gold-text"}">${m.status==="W"?"Victory":m.status==="L"?"Defeat":"Draw"}${m.date?" · "+esc(m.date):""}</small></div>
+      <div class="op">${esc(m.opponent)}</div>
+    </div>`).join("") : `<div class="empty">No results recorded yet.</div>`;
+  $("#form").innerHTML=results.length ? results.slice(-5).map(m=>`<div class="form-item"><b class="${m.status==="W"?"green":m.status==="L"?"red":"gold-text"}">${esc(m.status)}</b><small>${m.team}–${m.opponentScore}</small></div>`).join("") : `<div class="empty">No matches yet.</div>`;
+  $("#form-note").textContent=`${wins} wins · ${draws} draws · ${losses} losses · Goal difference ${difference>0?"+":""}${difference}`;
+  $("#record").innerHTML=[
+    ["Wins",wins],["Draws",draws],["Losses",losses],
+    ["Goals scored",goalsFor],["Goals conceded",goalsAgainst],
+    ["Goal difference",(difference>0?"+":"")+difference],["League points",points]
+  ].map(([k,v])=>`<li><strong>${esc(k)}</strong><small>${esc(v)}</small></li>`).join("");
+}
 
-    <section class="section" id="fixtures">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <h2>Fixtures</h2>
-            <p>Upcoming matches will appear here.</p>
-          </div>
-        </div>
+function renderPlayers(filter=""){
+  const sorted=DATA.players.slice().sort((a,b)=>b.goals-a.goals||a.name.localeCompare(b.name));
+  $("#scorers").innerHTML=sorted.slice(0,5).map((p,i)=>`<tr><td class="rank">${String(i+1).padStart(2,"0")}</td><td><span class="player-link name" data-player="${esc(p.name)}">${esc(p.name)}</span></td><td class="gold-text"><strong>${p.goals}</strong></td></tr>`).join("");
+  const makers=DATA.players.slice().sort((a,b)=>b.assists-a.assists||a.name.localeCompare(b.name));
+  $("#assists").innerHTML=makers.slice(0,5).map((p,i)=>`<tr><td class="rank">${String(i+1).padStart(2,"0")}</td><td><span class="player-link name" data-player="${esc(p.name)}">${esc(p.name)}</span></td><td class="gold-text"><strong>${p.assists}</strong></td></tr>`).join("");
+  $("#no-assists").style.display=DATA.players.some(p=>p.assists>0)?"none":"block";
+  const filtered=DATA.players.filter(p=>p.name.toLowerCase().includes(filter.toLowerCase()));
+  $("#players").innerHTML=filtered.map(p=>`<article class="card player-card" tabindex="0" role="button" data-player="${esc(p.name)}" aria-label="View ${esc(p.name)} profile">
+    <span class="initial">${esc(initials(p.name))}</span>
+    <h3>${esc(p.name)}</h3><p>${esc(p.position||"Player")}</p>
+    <div class="player-mini"><span>Goals <b>${p.goals}</b></span><span>Assists <b>${p.assists}</b></span></div>
+  </article>`).join("") || `<div class="empty">No players match your search.</div>`;
+  $("#player-count").textContent=DATA.players.length+" PLAYERS";
+}
 
-        <div class="panel">
-          <div class="panel-header">
-            <h3>Next match</h3>
-            <span>Awaiting confirmation</span>
-          </div>
-          <div class="empty-state">
-            Upcoming Temu Ballers fixtures have not yet been confirmed.
-            <br />
-            <br />
-            Send us the correct fixture schedule to complete this section.
-          </div>
-        </div>
-      </div>
-    </section>
+function renderFixtures(){
+  const future=DATA.fixtures.slice().sort((a,b)=>(a.date||"").localeCompare(b.date||""));
+  $("#fixture-count").textContent=future.length+" FIXTURES";
+  $("#fixture-list").className=future.length?"":"empty";
+  $("#fixture-list").innerHTML=future.length?future.map(f=>`
+    <div class="result">
+      <div class="op">Temu Ballers</div>
+      <div style="text-align:center"><div class="score" style="font-size:14px">${esc(f.date||"Date TBC")}</div><small>${esc(f.time||"Time TBC")}</small></div>
+      <div class="op">${esc(f.opponent)}<small style="text-align:right">${esc([f.venue,f.field].filter(Boolean).join(" · "))}</small></div>
+    </div>`).join(""):`Upcoming fixtures have not yet been confirmed for Temu Ballers.`;
+}
 
-    <section class="section" id="rules">
-      <div class="container">
-        <div class="section-heading">
-          <div>
-            <h2>Rules & fines</h2>
-            <p>The standards and consequences agreed by the team.</p>
-          </div>
-        </div>
+function renderFines(){
+  const fines=DATA.fines;
+  const paid=total(fines.filter(f=>f.paid),"amount");
+  const all=total(fines,"amount");
+  $("#fines-total").textContent=money(all);
+  $("#fines-paid").textContent=money(paid);
+  $("#fines-due").textContent=money(all-paid);
+  $("#fines-count").textContent=fines.length;
+  $("#no-fines").style.display=fines.length?"none":"block";
+  $("#fines-list").innerHTML=fines.map(f=>`<tr><td>${esc(f.player)}</td><td>${esc(f.reason)}</td><td>${esc(f.date||"—")}</td><td>${money(f.amount)}</td><td><span class="tag ${f.paid?"green":"gold-text"}">${f.paid?"PAID":"DUE"}</span></td></tr>`).join("");
+  $("#fine-players").innerHTML=DATA.players.map(p=>{
+    const own=fines.filter(f=>f.player===p.name);
+    const sum=total(own,"amount");
+    const paidSum=total(own.filter(f=>f.paid),"amount");
+    return `<tr><td>${esc(p.name)}</td><td>${money(sum)}</td><td class="green">${money(paidSum)}</td><td class="gold-text">${money(sum-paidSum)}</td></tr>`;
+  }).join("");
+}
 
-        <div class="columns">
-          <div class="panel">
-            <div class="panel-header">
-              <h3>Team rules</h3>
-              <span>Discipline</span>
-            </div>
+function renderRules(){
+  $("#rules-list").innerHTML=DATA.rules.map((r,i)=>`<li><strong class="gold-text">${String(i+1).padStart(2,"0")}.</strong> &nbsp; <div><strong>${esc(r.title)}</strong><small>${esc(r.description)}</small></div></li>`).join("");
+}
 
-            <ul class="rules-list" id="rules-list"></ul>
-          </div>
+function openProfile(name){
+  const p=DATA.players.find(x=>x.name===name);
+  if(!p)return;
+  $("#profile-name").textContent=p.name;
+  $("#profile-sub").textContent=p.position||"Temu Ballers squad member";
+  $("#profile-stats").innerHTML=[
+    ["Goals",p.goals],["Assists",p.assists],["Appearances",p.appearances],
+    ["Yellow cards",p.yellow],["Green cards",p.green],["Goal contributions",p.goals+p.assists]
+  ].map(([k,v])=>`<div><small>${esc(k)}</small><b>${esc(v)}</b></div>`).join("");
+  const contributions=DATA.matches.filter(m=>(m.scorers||[]).includes(p.name));
+  $("#profile-goals").innerHTML=contributions.length?contributions.map(m=>`<li><strong>vs ${esc(m.opponent)}</strong><small>Goal recorded · ${m.team}–${m.opponentScore}</small></li>`).join(""):`<li>No goal contributions recorded yet.</li>`;
+  $("#profile").showModal();
+}
 
-          <div class="panel">
-            <div class="panel-header">
-              <h3>Fines register</h3>
-              <span>Team accountability</span>
-            </div>
+document.addEventListener("click",e=>{
+  const target=e.target.closest("[data-player]");
+  if(target)openProfile(target.dataset.player);
+});
+document.addEventListener("keydown",e=>{
+  if((e.key==="Enter"||e.key===" ")&&e.target.matches(".player-card")){e.preventDefault();openProfile(e.target.dataset.player);}
+});
+$("#close-profile").addEventListener("click",()=>$("#profile").close());
+$("#search-player").addEventListener("input",e=>renderPlayers(e.target.value));
 
-            <div class="empty-state">
-              No fines have been entered yet.
-              <br /><br />
-              Fine amounts and the precise conditions still need to be
-              confirmed before this register can be completed.
-            </div>
-            <div class="notice">
-              Yellow cards, green cards, injuries, own goals, not scoring,
-              missing open goals and finishing below fourth place have been
-              listed for confirmation.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <span><strong>TEMU BALLERS</strong> · Official team website</span>
-      <span>Built for the team. Updated throughout the season.</span>
-    </div>
-  </footer>
-
-  <script>
-    // ==========================================
-    // TEMU BALLERS: EDIT TEAM DATA HERE
-    // ==========================================
-
-    const team = {
-      name: "Temu Ballers",
-
-      players: [
-        { name: "Josh", goals: 2, assists: null },
-        { name: "Ethan", goals: 0, assists: null },
-        { name: "Josè", goals: 0, assists: null },
-        { name: "Abdou", goals: 0, assists: null },
-        { name: "Adam", goals: 2, assists: null },
-        { name: "Alex", goals: 0, assists: null },
-        { name: "Brandon", goals: 0, assists: null },
-        { name: "Lathi", goals: 0, assists: null },
-        { name: "Zack", goals: 1, assists: null },
-        { name: "Manu", goals: 0, assists: null }
-      ],
-
-      matches: [
-        {
-          opponent: "Dark Knights",
-          teamScore: 3,
-          opponentScore: 3,
-          result: "D",
-          scorers: ["Josh", "Zack", "Adam"]
-        },
-        {
-          opponent: "FC Sparta",
-          teamScore: 2,
-          opponentScore: 1,
-          result: "W",
-          scorers: ["Josh", "Adam"]
-        }
-      ],
-
-      rules: [
-        {
-          title: "Yellow card",
-          detail: "Fine amount and conditions to be confirmed."
-        },
-        {
-          title: "Green card",
-          detail: "Fine amount and conditions to be confirmed."
-        },
-        {
-          title: "Injury",
-          detail: "Rule and fine amount to be confirmed."
-        },
-        {
-          title: "Own goal",
-          detail: "Fine amount to be confirmed."
-        },
-        {
-          title: "Not scoring",
-          detail: "Rule and conditions to be confirmed."
-        },
-        {
-          title: "Missing an open goal",
-          detail: "Fine amount to be confirmed."
-        },
-        {
-          title: "Finishing below 4th place",
-          detail: "Everyone takes a shot. Additional conditions to be confirmed."
-        }
-      ]
-    };
-
-    // ==========================================
-    // RENDERING
-    // ==========================================
-
-    const $ = (selector) => document.querySelector(selector);
-
-    const escapeHTML = (value) =>
-      String(value).replace(/[&<>"']/g, char => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-      })[char]);
-
-    const initials = (name) =>
-      name.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        .split(/\s+/).map(part => part[0]).join("").toUpperCase();
-
-    const matches = team.matches;
-    const played = matches.length;
-    const wins = matches.filter(m => m.result === "W").length;
-    const draws = matches.filter(m => m.result === "D").length;
-    const losses = matches.filter(m => m.result === "L").length;
-    const goalsFor = matches.reduce((sum, m) => sum + m.teamScore, 0);
-    const goalsAgainst = matches.reduce((sum, m) => sum + m.opponentScore, 0);
-    const points = wins * 3 + draws;
-
-    $("#played").textContent = played;
-    $("#goals").textContent = goalsFor;
-    $("#points").textContent = points;
-    $("#difference").textContent =
-      (goalsFor - goalsAgainst > 0 ? "+" : "") + (goalsFor - goalsAgainst);
-
-    $("#wins-record").textContent = `${wins} match${wins === 1 ? "" : "es"} won`;
-    $("#draws-record").textContent = `${draws} match${draws === 1 ? "" : "es"} drawn`;
-    $("#losses-record").textContent =
-      losses ? `${losses} match${losses === 1 ? "" : "es"} lost`
-             : "No losses recorded";
-
-    $("#results-list").innerHTML = matches.slice().reverse().map(match => `
-      <div class="result-row">
-        <div class="opponent">${escapeHTML(team.name)}</div>
-        <div class="score-wrap">
-          <div class="score">${match.teamScore} – ${match.opponentScore}</div>
-          <span class="result-status ${match.result === "W" ? "win" : match.result === "D" ? "draw" : ""}">
-            ${match.result === "W" ? "Victory" : match.result === "D" ? "Draw" : "Defeat"}
-          </span>
-        </div>
-        <div class="opponent">${escapeHTML(match.opponent)}</div>
-      </div>
-    `).join("");
-
-    const rankedPlayers = team.players.slice().sort(
-      (a, b) => b.goals - a.goals || a.name.localeCompare(b.name)
-    );
-
-    $("#top-scorers").innerHTML = rankedPlayers.slice(0, 5).map((player, index) => `
-      <tr>
-        <td class="rank">${String(index + 1).padStart(2, "0")}</td>
-        <td><span class="player-name">${escapeHTML(player.name)}</span></td>
-        <td class="goal-number">${player.goals}</td>
-      </tr>
-    `).join("");
-
-    $("#squad-list").innerHTML = team.players.map((player, index) => `
-      <tr>
-        <td class="rank">${String(index + 1).padStart(2, "0")}</td>
-        <td>
-          <span class="player-initials">${escapeHTML(initials(player.name))}</span>
-          <span class="player-name">${escapeHTML(player.name)}</span>
-        </td>
-        <td class="goal-number">${player.goals}</td>
-        <td>${player.assists === null ? "—" : player.assists}</td>
-      </tr>
-    `).join("");
-
-    $("#squad-count").textContent = `${team.players.length} PLAYERS`;
-
-    const knownAssists = team.players.some(player => player.assists !== null);
-
-    if (knownAssists) {
-      $("#assists-note").hidden = true;
-      $("#top-assists").innerHTML = team.players
-        .filter(player => player.assists !== null)
-        .sort((a, b) => b.assists - a.assists)
-        .slice(0, 5)
-        .map((player, index) => `
-          <tr>
-            <td class="rank">${String(index + 1).padStart(2, "0")}</td>
-            <td><span class="player-name">${escapeHTML(player.name)}</span></td>
-            <td class="goal-number">${player.assists}</td>
-          </tr>
-        `).join("");
-    } else {
-      $("#top-assists").innerHTML = "";
-    }
-
-    $("#team-form").innerHTML = matches.slice(-5).map(match => `
-      <div class="form-item">
-        <strong class="${match.result === "W" ? "positive" : ""}">
-          ${escapeHTML(match.result)}
-        </strong>
-        <small>${match.teamScore}–${match.opponentScore}</small>
-      </div>
-    `).join("");
-
-    $("#form-summary").textContent =
-      `${wins} win · ${draws} draw · ${losses} losses. ` +
-      `Goal difference: ${goalsFor - goalsAgainst > 0 ? "+" : ""}${goalsFor - goalsAgainst}.`;
-
-    $("#rules-list").innerHTML = team.rules.map((rule, index) => `
-      <li>
-        <span class="rule-index">${String(index + 1).padStart(2, "0")}</span>
-        <div>
-          <strong>${escapeHTML(rule.title)}</strong>
-          <small>${escapeHTML(rule.detail)}</small>
-        </div>
-      </li>
-    `).join("");
-  </script>
+renderResults();
+renderPlayers();
+renderFixtures();
+renderFines();
+renderRules();
+</script>
 </body>
 </html>
