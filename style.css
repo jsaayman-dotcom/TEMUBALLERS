@@ -2,7 +2,7 @@
 :root {
   --bg: #0d1117;
   --surface: #141a23;
-  --surface-raised: #19212c;
+  --surface-light: #19212c;
   --border: #27313e;
   --text: #f1f4f8;
   --muted: #8f9baa;
@@ -11,7 +11,7 @@
   --gold: #d8b66c;
   --green: #56c99a;
   --red: #f08080;
-  --radius: 12px;
+  --radius: 11px;
   --font-body: "DM Sans", Arial, sans-serif;
   --font-display: "Barlow Condensed", Impact, sans-serif;
 }
@@ -48,30 +48,26 @@ button {
   color: inherit;
 }
 
+.container {
+  width: min(1120px, calc(100% - 40px));
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .top-strip {
   background: #090c11;
   border-bottom: 1px solid var(--border);
   color: var(--muted);
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: 1.2px;
-}
-
-.top-strip-inner,
-.site-header,
-.hero,
-.section,
-.site-footer {
-  width: min(1120px, calc(100% - 40px));
-  margin-right: auto;
-  margin-left: auto;
+  letter-spacing: 1px;
 }
 
 .top-strip-inner {
   min-height: 31px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
 }
 
@@ -82,6 +78,11 @@ button {
   margin-right: 6px;
   border-radius: 50%;
   background: var(--green);
+}
+
+.top-divider {
+  margin: 0 5px;
+  color: #4c5b6d;
 }
 
 .season-label {
@@ -105,20 +106,21 @@ button {
 }
 
 .brand-mark {
-  width: 39px;
-  height: 39px;
+  width: 41px;
+  height: 41px;
   display: grid;
   place-items: center;
-  border: 1px solid #385b87;
+  overflow: hidden;
+  border: 1px solid #354b66;
   border-radius: 9px;
-  background: #18263a;
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 900;
+  background: linear-gradient(145deg, #1b2b40, #111923);
+  color: #f1f4f8;
 }
 
-.brand-mark span {
-  color: var(--gold);
+.brand-mark svg {
+  display: block;
+  width: 29px;
+  height: 29px;
 }
 
 .brand-copy {
@@ -133,7 +135,7 @@ button {
   letter-spacing: 1px;
 }
 
-.brand-copy > span {
+.brand-copy small {
   color: var(--muted);
   font-size: 8px;
   font-weight: 700;
@@ -150,10 +152,11 @@ button {
   color: #aeb8c5;
   font-size: 11px;
   font-weight: 600;
-  transition: color .2s ease;
+  transition: color .18s ease;
 }
 
-.main-nav a:hover {
+.main-nav a:hover,
+.main-nav a:focus-visible {
   color: var(--blue);
 }
 
@@ -166,9 +169,9 @@ button {
   display: flex;
   align-items: center;
   border: 1px solid #2a3a4d;
-  border-radius: 15px;
+  border-radius: 14px;
   background:
-    radial-gradient(ellipse at 85% 50%, rgba(57, 126, 229, .18), transparent 38%),
+    radial-gradient(ellipse at 85% 50%, rgba(57, 126, 229, .16), transparent 38%),
     linear-gradient(115deg, #151d28, #101720 72%);
 }
 
@@ -184,8 +187,17 @@ button {
   color: var(--blue);
   font-size: 9px;
   font-weight: 800;
-  letter-spacing: 1.4px;
+  letter-spacing: 1.3px;
   text-transform: uppercase;
+}
+
+.eyebrow-line {
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  margin-right: 5px;
+  vertical-align: middle;
+  background: var(--gold);
 }
 
 .hero h1 {
@@ -202,7 +214,7 @@ button {
 }
 
 .hero-description {
-  margin: 17px 0 17px;
+  margin: 17px 0;
   color: #b4bfcc;
   font-size: 12px;
 }
@@ -216,10 +228,11 @@ button {
   border: 1px solid #4c87d8;
   border-radius: 5px;
   background: var(--blue-strong);
-  color: white;
+  color: #fff;
   font-size: 9px;
   font-weight: 800;
   letter-spacing: .6px;
+  transition: background .18s ease;
 }
 
 .primary-link:hover {
@@ -240,7 +253,7 @@ button {
   pointer-events: none;
 }
 
-.hero-ring {
+.hero-orbit {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -249,19 +262,19 @@ button {
   transform: translate(-50%, -50%);
 }
 
-.ring-one {
+.orbit-one {
   width: 190px;
   height: 190px;
 }
 
-.ring-two {
+.orbit-two {
   width: 150px;
   height: 215px;
   border-color: rgba(216, 182, 108, .25);
   transform: translate(-50%, -50%) rotate(35deg);
 }
 
-.hero-ball {
+.hero-emblem {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -276,16 +289,17 @@ button {
   font-family: var(--font-display);
   font-size: 30px;
   font-weight: 900;
+  letter-spacing: -1px;
   transform: translate(-50%, -50%);
 }
 
-.hero-number {
+.hero-year {
   position: absolute;
   right: 0;
   bottom: 0;
   color: var(--gold);
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: 2px;
 }
 
@@ -297,8 +311,8 @@ button {
   min-height: 32px;
   padding: 0 18px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   border-top: 1px solid rgba(147, 161, 180, .14);
   background: rgba(7, 10, 15, .2);
@@ -308,7 +322,7 @@ button {
   letter-spacing: .9px;
 }
 
-.hero-footer b {
+.gold-text {
   color: var(--gold);
 }
 
@@ -319,8 +333,8 @@ button {
 .section-heading {
   margin-bottom: 17px;
   display: flex;
-  justify-content: space-between;
   align-items: end;
+  justify-content: space-between;
   gap: 15px;
 }
 
@@ -391,12 +405,12 @@ button {
   font-size: 9px;
 }
 
-.highlight-card {
+.featured-stat {
   border-color: #355a87;
   background: linear-gradient(135deg, #1a2b40, #141a23);
 }
 
-.highlight-card > strong {
+.featured-stat > strong {
   color: var(--blue);
 }
 
@@ -414,21 +428,11 @@ button {
   background: var(--surface);
 }
 
-.recent-panel,
-.record-panel,
-.leaderboard-panel,
-.full-stats-panel,
-.fixtures-panel,
-.fines-panel,
-.rules-panel {
-  padding: 18px;
-}
-
 .panel-heading {
   margin-bottom: 15px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
 }
 
@@ -437,10 +441,20 @@ button {
 }
 
 .panel-heading h3,
-.record-panel h3 {
+.form-panel h3 {
   margin: 0;
   font-size: 14px;
   font-weight: 800;
+}
+
+.recent-panel,
+.form-panel,
+.leaderboard-panel,
+.stats-panel,
+.fixtures-panel,
+.fines-panel,
+.rules-panel {
+  padding: 18px;
 }
 
 .results-list {
@@ -519,12 +533,13 @@ button {
   color: var(--red);
 }
 
-.record-panel h3 {
+.form-panel h3 {
   margin-bottom: 14px;
 }
 
 .form-guide {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
 }
 
@@ -553,7 +568,7 @@ button {
   color: var(--red);
 }
 
-.record-divider {
+.thin-divider {
   height: 1px;
   margin: 17px 0 8px;
   background: var(--border);
@@ -639,7 +654,7 @@ button {
 .player-card:hover,
 .player-card:focus-visible {
   border-color: #4d78ad;
-  background: var(--surface-raised);
+  background: var(--surface-light);
   outline: none;
 }
 
@@ -771,12 +786,6 @@ button {
   font-size: 10px;
 }
 
-.full-stats-panel,
-.fines-panel,
-.rules-panel {
-  margin-top: 12px;
-}
-
 .table-wrap {
   width: 100%;
   overflow-x: auto;
@@ -820,6 +829,7 @@ tbody td:first-child {
   margin: 10px 0 0;
   color: #7f8c9c;
   font-size: 9px;
+  line-height: 1.6;
 }
 
 .fixture-date {
@@ -855,6 +865,7 @@ tbody td:first-child {
   width: 7px;
   height: 10px;
   display: inline-block;
+  flex-shrink: 0;
   border-radius: 2px;
 }
 
@@ -908,12 +919,14 @@ tbody td:first-child {
   background: rgba(216, 182, 108, .05);
   color: #aeb8c5;
   font-size: 9px;
+  line-height: 1.6;
 }
 
 .site-footer {
   min-height: 90px;
   margin-top: 54px;
-  padding: 20px 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -922,13 +935,13 @@ tbody td:first-child {
 }
 
 .footer-brand .brand-mark {
-  width: 34px;
-  height: 34px;
-  font-size: 18px;
+  width: 36px;
+  height: 36px;
 }
 
-.footer-brand .brand-copy strong {
-  font-size: 9px;
+.footer-brand .brand-mark svg {
+  width: 25px;
+  height: 25px;
 }
 
 .site-footer > p {
@@ -947,7 +960,9 @@ tbody td:first-child {
   position: fixed;
   width: min(400px, calc(100% - 28px));
   max-width: 400px;
+  max-height: calc(100% - 32px);
   padding: 22px;
+  overflow-y: auto;
   border: 1px solid #354456;
   border-radius: 13px;
   background: #151d27;
@@ -966,7 +981,8 @@ tbody td:first-child {
   height: 29px;
   border: 1px solid var(--border);
   border-radius: 6px;
-  background: var(--surface-raised);
+  background: var(--surface-light);
+  color: var(--text);
   font-size: 19px;
   cursor: pointer;
 }
@@ -984,6 +1000,7 @@ tbody td:first-child {
   height: 56px;
   margin: 0;
   font-size: 22px;
+  flex-shrink: 0;
 }
 
 .profile-header h3 {
@@ -1033,11 +1050,7 @@ tbody td:first-child {
 }
 
 @media (max-width: 760px) {
-  .top-strip-inner,
-  .site-header,
-  .hero,
-  .section,
-  .site-footer {
+  .container {
     width: calc(100% - 28px);
   }
 
@@ -1086,11 +1099,7 @@ tbody td:first-child {
     scroll-padding-top: 12px;
   }
 
-  .top-strip-inner,
-  .site-header,
-  .hero,
-  .section,
-  .site-footer {
+  .container {
     width: calc(100% - 24px);
   }
 
@@ -1100,7 +1109,8 @@ tbody td:first-child {
   }
 
   .site-header {
-    padding: 11px 0 0;
+    padding-top: 11px;
+    padding-bottom: 0;
     flex-wrap: wrap;
     gap: 10px;
     border-bottom: 0;
@@ -1109,7 +1119,11 @@ tbody td:first-child {
   .brand-mark {
     width: 35px;
     height: 35px;
-    font-size: 20px;
+  }
+
+  .brand-mark svg {
+    width: 25px;
+    height: 25px;
   }
 
   .brand-copy strong {
@@ -1120,7 +1134,7 @@ tbody td:first-child {
     width: 100%;
     min-height: 39px;
     justify-content: space-between;
-    gap: 8px;
+    gap: 10px;
     overflow-x: auto;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
@@ -1135,7 +1149,7 @@ tbody td:first-child {
     min-height: 225px;
     margin-top: 14px;
     padding: 24px 19px 36px;
-    border-radius: 11px;
+    border-radius: 10px;
   }
 
   .hero-content {
@@ -1160,23 +1174,23 @@ tbody td:first-child {
     opacity: .28;
   }
 
-  .hero-ball {
+  .hero-emblem {
     width: 78px;
     height: 78px;
     font-size: 24px;
   }
 
-  .ring-one {
+  .orbit-one {
     width: 160px;
     height: 160px;
   }
 
-  .ring-two {
+  .orbit-two {
     width: 130px;
     height: 185px;
   }
 
-  .hero-number {
+  .hero-year {
     display: none;
   }
 
@@ -1215,7 +1229,7 @@ tbody td:first-child {
   .fine-summary .stat-card {
     min-height: 96px;
     padding: 11px;
-    border-radius: 9px;
+    border-radius: 8px;
   }
 
   .stat-label {
@@ -1232,14 +1246,14 @@ tbody td:first-child {
   }
 
   .recent-panel,
-  .record-panel,
+  .form-panel,
   .leaderboard-panel,
-  .full-stats-panel,
+  .stats-panel,
   .fixtures-panel,
   .fines-panel,
   .rules-panel {
     padding: 13px;
-    border-radius: 9px;
+    border-radius: 8px;
   }
 
   .panel-heading {
@@ -1247,7 +1261,7 @@ tbody td:first-child {
   }
 
   .panel-heading h3,
-  .record-panel h3 {
+  .form-panel h3 {
     font-size: 13px;
   }
 
@@ -1324,7 +1338,7 @@ tbody td:first-child {
     gap: 8px;
   }
 
-  .leaderboards-grid .panel {
+  .leaderboards-grid .leaderboard-panel {
     padding: 11px 9px;
   }
 
@@ -1371,7 +1385,7 @@ tbody td:first-child {
     font-size: 8px;
   }
 
-  .full-stats-panel,
+  .stats-panel,
   .fines-panel,
   .rules-panel {
     margin-top: 9px;
@@ -1399,12 +1413,13 @@ tbody td:first-child {
   .safety-note,
   .table-note {
     font-size: 8px;
-    line-height: 1.6;
   }
 
   .site-footer {
-    margin-top: 38px;
     min-height: auto;
+    margin-top: 38px;
+    padding-top: 18px;
+    padding-bottom: 18px;
     flex-wrap: wrap;
     gap: 12px;
   }
