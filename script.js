@@ -1,118 +1,31 @@
 
 /* =========================================================
-   TEMU BALLERS — WEBSITE FUNCTIONALITY
+   TEMU BALLERS — BLACK & ORANGE WEBSITE
    File: script.js
    ========================================================= */
 
 "use strict";
 
-/* ---------- 1. TEAM DATA ---------- */
+/* =========================================================
+   1. TEAM DATA
+   Update player statistics here as the season progresses.
+   Use null for information that has not been recorded.
+   ========================================================= */
 
 const teamData = {
   name: "Temu Ballers",
 
-  rules: [
-    {
-      title: "Yellow card",
-      description: "One shot under the team rules."
-    },
-    {
-      title: "Green card",
-      description: "One shot under the team rules."
-    },
-    {
-      title: "Own goal",
-      description: "One shot under the team rules."
-    },
-    {
-      title: "Not scoring",
-      description: "One shot under the team rules."
-    },
-    {
-      title: "Missing an open goal",
-      description: "One shot under the team rules."
-    },
-    {
-      title: "Finishing below 4th",
-      description: "Everyone takes a shot."
-    },
-    {
-      title: "Injury rule",
-      description: "Only applies if the team has agreed to this rule."
-    }
-  ],
-
   players: [
-    {
-      name: "Josh",
-      goals: 2,
-      assists: null,
-      appearances: 2,
-      cards: { green: 0, yellow: 0 }
-    },
-    {
-      name: "Ethan",
-      goals: 0,
-      assists: 1,
-      appearances: 2,
-      cards: { green: 1, yellow: 0 }
-    },
-    {
-      name: "Jose",
-      goals: 0,
-      assists: 2,
-      appearances: 2,
-      cards: { green: 0, yellow: 0 }
-    },
-    {
-      name: "Abdou",
-      goals: 0,
-      assists: null,
-      appearances: 2,
-      cards: { green: 0, yellow: 0 }
-    },
-    {
-      name: "Adam",
-      goals: 2,
-      assists: null,
-      appearances: 2,
-      cards: { green: 2, yellow: 0 }
-    },
-    {
-      name: "Alex",
-      goals: 0,
-      assists: null,
-      appearances: null,
-      cards: { green: 0, yellow: 0 }
-    },
-    {
-      name: "Brandon",
-      goals: 0,
-      assists: null,
-      appearances: 2,
-      cards: { green: 0, yellow: 0 }
-    },
-    {
-      name: "Lathi",
-      goals: 0,
-      assists: null,
-      appearances: null,
-      cards: { green: 0, yellow: 0 }
-    },
-    {
-      name: "Zach",
-      goals: 1,
-      assists: null,
-      appearances: 2,
-      cards: { green: 1, yellow: 1 }
-    },
-    {
-      name: "Manu",
-      goals: 0,
-      assists: null,
-      appearances: null,
-      cards: { green: 0, yellow: 0 }
-    }
+    { name: "Josh", goals: 2, assists: null, appearances: 2, green: 0, yellow: 0 },
+    { name: "Ethan", goals: 0, assists: 1, appearances: 2, green: 1, yellow: 0 },
+    { name: "Jose", goals: 0, assists: 2, appearances: 2, green: 0, yellow: 0 },
+    { name: "Abdou", goals: 0, assists: null, appearances: 2, green: 0, yellow: 0 },
+    { name: "Adam", goals: 2, assists: null, appearances: 2, green: 2, yellow: 0 },
+    { name: "Alex", goals: 0, assists: null, appearances: null, green: 0, yellow: 0 },
+    { name: "Brandon", goals: 0, assists: null, appearances: 2, green: 0, yellow: 0 },
+    { name: "Lathi", goals: 0, assists: null, appearances: null, green: 0, yellow: 0 },
+    { name: "Zach", goals: 1, assists: null, appearances: 2, green: 1, yellow: 1 },
+    { name: "Manu", goals: 0, assists: null, appearances: null, green: 0, yellow: 0 }
   ],
 
   results: [
@@ -133,56 +46,27 @@ const teamData = {
   ],
 
   fixtures: [
-    {
-      date: "2026-11-04",
-      time: "18:15",
-      opponent: "Superstrikers",
-      venue: "Fairview Action Arena"
-    },
-    {
-      date: "2026-11-11",
-      time: "20:30",
-      opponent: "Depot Utd FC",
-      venue: "Fairview Action Arena"
-    },
-    {
-      date: "2026-11-18",
-      time: "19:00",
-      opponent: "Von-Boeties FC",
-      venue: "Fairview Action Arena"
-    },
-    {
-      date: "2026-11-25",
-      time: "18:15",
-      opponent: "Teknology FC",
-      venue: "Fairview Action Arena"
-    },
-    {
-      date: "2026-12-02",
-      time: "19:45",
-      opponent: "The Unknowns",
-      venue: "Fairview Action Arena"
-    },
-    {
-      date: "2026-12-09",
-      time: "21:15",
-      opponent: "Quality Control",
-      venue: "Fairview Action Arena"
-    },
-    {
-      date: "2026-12-16",
-      time: "20:30",
-      opponent: "Toray Logistics",
-      venue: "Fairview Action Arena"
-    }
+    { date: "2026-11-04", time: "18:15", opponent: "Superstrikers", venue: "Fairview Action Arena" },
+    { date: "2026-11-11", time: "20:30", opponent: "Depot Utd FC", venue: "Fairview Action Arena" },
+    { date: "2026-11-18", time: "19:00", opponent: "Von-Boeties FC", venue: "Fairview Action Arena" },
+    { date: "2026-11-25", time: "18:15", opponent: "Teknology FC", venue: "Fairview Action Arena" },
+    { date: "2026-12-02", time: "19:45", opponent: "The Unknowns", venue: "Fairview Action Arena" },
+    { date: "2026-12-09", time: "21:15", opponent: "Quality Control", venue: "Fairview Action Arena" },
+    { date: "2026-12-16", time: "20:30", opponent: "Toray Logistics", venue: "Fairview Action Arena" }
   ],
 
   injuries: [
-    {
-      player: "Alex",
-      description: "Ear injury",
-      status: "Reported"
-    }
+    { player: "Alex", description: "Ear injury", status: "Reported" }
+  ],
+
+  rules: [
+    { title: "Yellow card", description: "One shot under the team rules." },
+    { title: "Green card", description: "One shot under the team rules." },
+    { title: "Own goal", description: "One shot under the team rules." },
+    { title: "Not scoring", description: "One shot under the team rules." },
+    { title: "Missing an open goal", description: "One shot under the team rules." },
+    { title: "Finishing below 4th", description: "Everyone takes a shot." },
+    { title: "Injury rule", description: "Only applies if the team has agreed to this rule." }
   ],
 
   teamOfWeek: {
@@ -192,7 +76,9 @@ const teamData = {
 };
 
 
-/* ---------- 2. HELPER FUNCTIONS ---------- */
+/* =========================================================
+   2. HELPER FUNCTIONS
+   ========================================================= */
 
 const $ = (selector, parent = document) =>
   parent.querySelector(selector);
@@ -202,24 +88,17 @@ const $$ = (selector, parent = document) =>
 
 function setText(id, value) {
   const element = document.getElementById(id);
-
-  if (element) {
-    element.textContent = value;
-  }
+  if (element) element.textContent = value;
 }
 
 function escapeHTML(value) {
-  return String(value ?? "").replace(/[&<>"']/g, character => {
-    const entities = {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    };
-
-    return entities[character];
-  });
+  return String(value ?? "").replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[character]);
 }
 
 function displayValue(value) {
@@ -229,15 +108,11 @@ function displayValue(value) {
 }
 
 function formatDate(dateString) {
-  if (!dateString) {
-    return "Date not recorded";
-  }
+  if (!dateString) return "Date not recorded";
 
   const date = new Date(`${dateString}T12:00:00`);
 
-  if (Number.isNaN(date.getTime())) {
-    return "Date not recorded";
-  }
+  if (Number.isNaN(date.getTime())) return "Date not recorded";
 
   return new Intl.DateTimeFormat("en-ZA", {
     day: "2-digit",
@@ -247,15 +122,11 @@ function formatDate(dateString) {
 }
 
 function formatShortDate(dateString) {
-  if (!dateString) {
-    return "—";
-  }
+  if (!dateString) return "—";
 
   const date = new Date(`${dateString}T12:00:00`);
 
-  if (Number.isNaN(date.getTime())) {
-    return "—";
-  }
+  if (Number.isNaN(date.getTime())) return "—";
 
   return new Intl.DateTimeFormat("en-ZA", {
     day: "2-digit",
@@ -263,47 +134,52 @@ function formatShortDate(dateString) {
   }).format(date);
 }
 
-function formatDifference(value) {
-  return value > 0 ? `+${value}` : String(value);
+function signedNumber(number) {
+  return number > 0 ? `+${number}` : String(number);
 }
 
-function getResultType(result) {
-  if (result.teamScore > result.opponentScore) {
-    return "win";
-  }
+function initials(name) {
+  return name
+    .trim()
+    .split(/\s+/)
+    .map(part => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
 
-  if (result.teamScore < result.opponentScore) {
-    return "loss";
-  }
-
+function resultType(result) {
+  if (result.teamScore > result.opponentScore) return "win";
+  if (result.teamScore < result.opponentScore) return "loss";
   return "draw";
 }
 
-function getResultLetter(result) {
-  const type = getResultType(result);
-
-  if (type === "win") return "W";
-  if (type === "loss") return "L";
-
-  return "D";
+function resultLabel(type) {
+  return {
+    win: "WIN",
+    draw: "DRAW",
+    loss: "LOSS"
+  }[type];
 }
 
 
-/* ---------- 3. CALCULATE TEAM STATISTICS ---------- */
+/* =========================================================
+   3. CALCULATE TEAM STATISTICS
+   ========================================================= */
 
-function calculateTeamStats() {
+function getTeamStats() {
   const played = teamData.results.length;
 
   const wins = teamData.results.filter(
-    result => getResultType(result) === "win"
+    result => resultType(result) === "win"
   ).length;
 
   const draws = teamData.results.filter(
-    result => getResultType(result) === "draw"
+    result => resultType(result) === "draw"
   ).length;
 
   const losses = teamData.results.filter(
-    result => getResultType(result) === "loss"
+    result => resultType(result) === "loss"
   ).length;
 
   const goalsFor = teamData.results.reduce(
@@ -316,17 +192,13 @@ function calculateTeamStats() {
     0
   );
 
-  const goalDifference = goalsFor - goalsAgainst;
-
-  const points = wins * 3 + draws;
-
   const greenCards = teamData.players.reduce(
-    (total, player) => total + player.cards.green,
+    (total, player) => total + player.green,
     0
   );
 
   const yellowCards = teamData.players.reduce(
-    (total, player) => total + player.cards.yellow,
+    (total, player) => total + player.yellow,
     0
   );
 
@@ -335,13 +207,12 @@ function calculateTeamStats() {
     wins,
     draws,
     losses,
+    points: wins * 3 + draws,
     goalsFor,
     goalsAgainst,
-    goalDifference,
-    points,
+    goalDifference: goalsFor - goalsAgainst,
     greenCards,
     yellowCards,
-    totalCards: greenCards + yellowCards,
     totalShots: greenCards + yellowCards,
     injuryCount: teamData.injuries.length,
     playerCount: teamData.players.length
@@ -349,176 +220,151 @@ function calculateTeamStats() {
 }
 
 
-/* ---------- 4. OVERVIEW ---------- */
+/* =========================================================
+   4. SEASON OVERVIEW
+   ========================================================= */
 
 function renderOverview() {
-  const stats = calculateTeamStats();
+  const stats = getTeamStats();
+
+  setText("heroRecord", `${stats.wins}–${stats.draws}–${stats.losses}`);
+  setText("points", stats.points);
+  setText("overviewPoints", stats.points);
+  setText("heroGoals", stats.goalsFor);
+  setText("heroGoalDifference", signedNumber(stats.goalDifference));
 
   setText("matchesPlayed", stats.played);
-  setText("points", stats.points);
   setText("goalsFor", stats.goalsFor);
-  setText("goalDifference", formatDifference(stats.goalDifference));
-
-  setText("heroGoals", stats.goalsFor);
-  setText(
-    "heroGoalDifference",
-    formatDifference(stats.goalDifference)
-  );
-
-  setText(
-    "heroRecord",
-    `${stats.wins}–${stats.draws}–${stats.losses}`
-  );
-
-  setText("winsCount", stats.wins);
-  setText("drawsCount", stats.draws);
-  setText("lossesCount", stats.losses);
+  setText("goalDifference", signedNumber(stats.goalDifference));
 
   setText("greenCards", stats.greenCards);
   setText("yellowCards", stats.yellowCards);
   setText("totalShots", stats.totalShots);
   setText("injuryCount", stats.injuryCount);
 
-  setText("playerCount", `${stats.playerCount} players`);
+  setText("playerCount", `${stats.playerCount} PLAYERS`);
+  setText("statsPlayerCount", `${stats.playerCount} PLAYERS`);
   setText(
     "resultsCount",
-    `${stats.played} ${stats.played === 1 ? "match" : "matches"}`
+    `${stats.played} ${stats.played === 1 ? "MATCH" : "MATCHES"}`
   );
 
-  renderFormGuide();
+  renderForm();
 }
 
 
-/* ---------- 5. RECENT FORM ---------- */
+/* =========================================================
+   5. RECENT FORM
+   ========================================================= */
 
-function renderFormGuide() {
+function renderForm() {
   const container = $("#formGuide");
-
   if (!container) return;
 
   const recentResults = [...teamData.results].reverse();
 
-  if (recentResults.length === 0) {
-    container.innerHTML = '<span class="empty-state">No results yet.</span>';
+  if (!recentResults.length) {
+    container.innerHTML = '<p class="empty-state">No results recorded yet.</p>';
     return;
   }
 
   container.innerHTML = recentResults.map(result => {
-    const type = getResultType(result);
-    const letter = getResultLetter(result);
-
-    const labels = {
-      win: "Win",
-      draw: "Draw",
-      loss: "Loss"
-    };
+    const type = resultType(result);
+    const letter = { win: "W", draw: "D", loss: "L" }[type];
 
     return `
       <span
         class="form-result form-${type}"
-        title="${labels[type]} vs ${escapeHTML(result.opponent)}"
-        aria-label="${labels[type]} against ${escapeHTML(result.opponent)}"
+        title="${escapeHTML(resultLabel(type))} vs ${escapeHTML(result.opponent)}"
       >${letter}</span>
     `;
   }).join("");
 }
 
 
-/* ---------- 6. MATCH RESULTS ---------- */
+/* =========================================================
+   6. RESULTS
+   ========================================================= */
 
 function renderResults() {
   const container = $("#resultsList");
-
   if (!container) return;
 
-  if (teamData.results.length === 0) {
+  if (!teamData.results.length) {
     container.innerHTML = `
-      <div class="panel">
-        <p class="empty-state">No results have been recorded yet.</p>
-      </div>
+      <p class="empty-state">No matches have been recorded yet.</p>
     `;
     return;
   }
 
-  container.innerHTML = [...teamData.results]
-    .reverse()
-    .map(result => {
-      const type = getResultType(result);
-      const status = {
-        win: "Win",
-        draw: "Draw",
-        loss: "Loss"
-      }[type];
+  container.innerHTML = [...teamData.results].reverse().map(result => {
+    const type = resultType(result);
 
-      const scorers = result.scorers.length
-        ? result.scorers.map(escapeHTML).join(", ")
-        : "Not recorded";
+    const scorers = result.scorers.length
+      ? result.scorers.map(escapeHTML).join(" · ")
+      : "Not recorded";
 
-      return `
-        <article class="result-card">
-          <div class="result-date">
-            <span class="result-date-day">${escapeHTML(formatShortDate(result.date))}</span>
-            <span>${escapeHTML(formatDate(result.date))}</span>
+    return `
+      <article class="result-card">
+        <div class="result-date">
+          <span class="result-date-day">${escapeHTML(formatShortDate(result.date))}</span>
+          <span>${escapeHTML(formatDate(result.date))}</span>
+        </div>
+
+        <div class="result-match">
+          <div class="result-team">
+            <span class="team-emblem">TB</span>
+            <strong>Temu Ballers</strong>
           </div>
 
-          <div class="result-match">
-            <span class="team-name">Temu Ballers</span>
-
-            <div class="score-display" aria-label="${result.teamScore} to ${result.opponentScore}">
-              <strong>${result.teamScore}</strong>
-              <span>–</span>
-              <strong>${result.opponentScore}</strong>
-            </div>
-
-            <span class="opponent-name">${escapeHTML(result.opponent)}</span>
+          <div class="score-display">
+            <strong>${result.teamScore}</strong>
+            <span>:</span>
+            <strong>${result.opponentScore}</strong>
           </div>
 
-          <span class="result-status status-${type}">${status}</span>
-
-          <div class="result-scorers">
-            <span>Scorers</span>
-            <p>${scorers}</p>
+          <div class="result-team opponent-team">
+            <strong>${escapeHTML(result.opponent)}</strong>
+            <span class="opponent-emblem">${escapeHTML(initials(result.opponent))}</span>
           </div>
-        </article>
-      `;
-    })
-    .join("");
+        </div>
+
+        <div class="result-details">
+          <span class="result-status status-${type}">${resultLabel(type)}</span>
+          <p><span>GOAL SCORERS</span> ${scorers}</p>
+        </div>
+      </article>
+    `;
+  }).join("");
 }
 
 
-/* ---------- 7. PLAYER CARDS ---------- */
+/* =========================================================
+   7. SQUAD CARDS
+   ========================================================= */
 
 function renderPlayers(searchTerm = "") {
   const container = $("#playersGrid");
-
   if (!container) return;
 
   const query = searchTerm.trim().toLowerCase();
 
-  const filteredPlayers = teamData.players.filter(player =>
+  const players = teamData.players.filter(player =>
     player.name.toLowerCase().includes(query)
   );
 
-  const count = $("#playerCount");
+  setText(
+    "playerCount",
+    `${players.length} ${players.length === 1 ? "PLAYER" : "PLAYERS"}`
+  );
 
-  if (count) {
-    count.textContent =
-      `${filteredPlayers.length} ${filteredPlayers.length === 1 ? "player" : "players"}`;
-  }
+  setText("statsPlayerCount", `${teamData.players.length} PLAYERS`);
 
   const emptyMessage = $("#noPlayersMessage");
+  if (emptyMessage) emptyMessage.hidden = players.length !== 0;
 
-  if (emptyMessage) {
-    emptyMessage.hidden = filteredPlayers.length !== 0;
-  }
-
-  container.innerHTML = filteredPlayers.map((player, index) => {
-    const initials = player.name
-      .split(/\s+/)
-      .map(part => part.charAt(0))
-      .join("")
-      .slice(0, 2)
-      .toUpperCase();
+  container.innerHTML = players.map(player => {
+    const squadNumber = teamData.players.indexOf(player) + 1;
 
     return `
       <article
@@ -526,15 +372,15 @@ function renderPlayers(searchTerm = "") {
         data-player="${escapeHTML(player.name)}"
         tabindex="0"
         role="button"
-        aria-label="View ${escapeHTML(player.name)}'s profile"
+        aria-label="Open ${escapeHTML(player.name)}'s profile"
       >
         <div class="player-card-top">
-          <span class="player-initials">${escapeHTML(initials)}</span>
-          <span class="player-number">${String(teamData.players.indexOf(player) + 1).padStart(2, "0")}</span>
+          <span class="player-initials">${escapeHTML(initials(player.name))}</span>
+          <span class="player-number">${String(squadNumber).padStart(2, "0")}</span>
         </div>
 
         <h3>${escapeHTML(player.name)}</h3>
-        <p class="player-role">Player</p>
+        <p class="player-role">Squad member</p>
 
         <div class="player-card-stats">
           <div>
@@ -551,21 +397,19 @@ function renderPlayers(searchTerm = "") {
   }).join("");
 }
 
-
-/* ---------- 8. PLAYER SEARCH ---------- */
-
 function setupPlayerSearch() {
-  const search = $("#playerSearch");
+  const input = $("#playerSearch");
+  if (!input) return;
 
-  if (!search) return;
-
-  search.addEventListener("input", event => {
+  input.addEventListener("input", event => {
     renderPlayers(event.target.value);
   });
 }
 
 
-/* ---------- 9. PLAYER PROFILE DIALOG ---------- */
+/* =========================================================
+   8. PLAYER PROFILE
+   ========================================================= */
 
 function openPlayerProfile(playerName) {
   const player = teamData.players.find(
@@ -579,33 +423,47 @@ function openPlayerProfile(playerName) {
 
   if (!dialog || !profile) return;
 
-  const assists = displayValue(player.assists);
-  const appearances = displayValue(player.appearances);
-  const cards = player.cards.green + player.cards.yellow;
+  const goalContributions =
+    player.assists === null ? null : player.goals + player.assists;
 
   profile.innerHTML = `
-    <h2>${escapeHTML(player.name)}</h2>
-    <p>Temu Ballers squad member</p>
+    <div class="profile-header">
+      <span class="player-initials profile-initials">${escapeHTML(initials(player.name))}</span>
+      <div>
+        <h2>${escapeHTML(player.name)}</h2>
+        <p>Temu Ballers · Squad member</p>
+      </div>
+    </div>
 
     <div class="profile-stats">
       <div class="profile-stat">
         <strong>${player.goals}</strong>
-        <span>Goals scored</span>
+        <span>Goals</span>
       </div>
 
       <div class="profile-stat">
-        <strong>${assists}</strong>
+        <strong>${displayValue(player.assists)}</strong>
         <span>Assists</span>
       </div>
 
       <div class="profile-stat">
-        <strong>${appearances}</strong>
+        <strong>${displayValue(player.appearances)}</strong>
         <span>Appearances</span>
       </div>
 
       <div class="profile-stat">
-        <strong>${cards}</strong>
-        <span>Total cards</span>
+        <strong>${displayValue(goalContributions)}</strong>
+        <span>Goal contributions</span>
+      </div>
+
+      <div class="profile-stat">
+        <strong>${player.green}</strong>
+        <span>Green cards</span>
+      </div>
+
+      <div class="profile-stat">
+        <strong>${player.yellow}</strong>
+        <span>Yellow cards</span>
       </div>
     </div>
   `;
@@ -618,29 +476,20 @@ function openPlayerProfile(playerName) {
 }
 
 function setupPlayerProfiles() {
-  const playersGrid = $("#playersGrid");
+  const grid = $("#playersGrid");
   const dialog = $("#playerDialog");
   const closeButton = $("#closeDialog");
 
-  if (playersGrid) {
-    playersGrid.addEventListener("click", event => {
+  if (grid) {
+    grid.addEventListener("click", event => {
       const card = event.target.closest("[data-player]");
-
-      if (!card) return;
-
-      openPlayerProfile(card.dataset.player);
+      if (card) openPlayerProfile(card.dataset.player);
     });
 
-    playersGrid.addEventListener("keydown", event => {
-      if (
-        event.key !== "Enter" &&
-        event.key !== " "
-      ) {
-        return;
-      }
+    grid.addEventListener("keydown", event => {
+      if (event.key !== "Enter" && event.key !== " ") return;
 
       const card = event.target.closest("[data-player]");
-
       if (!card) return;
 
       event.preventDefault();
@@ -662,15 +511,14 @@ function setupPlayerProfiles() {
     dialog.addEventListener("click", event => {
       if (event.target !== dialog) return;
 
-      const bounds = dialog.getBoundingClientRect();
+      const rect = dialog.getBoundingClientRect();
+      const outside =
+        event.clientX < rect.left ||
+        event.clientX > rect.right ||
+        event.clientY < rect.top ||
+        event.clientY > rect.bottom;
 
-      const clickedOutside =
-        event.clientX < bounds.left ||
-        event.clientX > bounds.right ||
-        event.clientY < bounds.top ||
-        event.clientY > bounds.bottom;
-
-      if (clickedOutside && typeof dialog.close === "function") {
+      if (outside && typeof dialog.close === "function") {
         dialog.close();
       }
     });
@@ -678,41 +526,39 @@ function setupPlayerProfiles() {
 }
 
 
-/* ---------- 10. PLAYER LEADERBOARDS ---------- */
+/* =========================================================
+   9. LEADERBOARDS
+   Every player is shown, including players with zero stats.
+   Unknown assists remain "—", not zero.
+   ========================================================= */
 
 function renderLeaderboard(containerId, statistic, label) {
   const container = document.getElementById(containerId);
-
   if (!container) return;
 
-  const rankedPlayers = teamData.players
-    .filter(player => typeof player[statistic] === "number")
-    .filter(player => player[statistic] > 0)
-    .sort((a, b) => {
-      if (b[statistic] !== a[statistic]) {
-        return b[statistic] - a[statistic];
-      }
+  const players = [...teamData.players].sort((a, b) => {
+    const aValue = a[statistic];
+    const bValue = b[statistic];
 
-      return a.name.localeCompare(b.name);
-    });
+    // Players with recorded numbers are ranked before unknown values.
+    if (aValue === null && bValue !== null) return 1;
+    if (aValue !== null && bValue === null) return -1;
 
-  if (rankedPlayers.length === 0) {
-    container.innerHTML = `
-      <p class="empty-state">No ${escapeHTML(label.toLowerCase())} recorded yet.</p>
-    `;
-    return;
-  }
+    if (aValue !== null && bValue !== null && bValue !== aValue) {
+      return bValue - aValue;
+    }
 
-  container.innerHTML = rankedPlayers.map((player, index) => {
-    const value = player[statistic];
+    return a.name.localeCompare(b.name);
+  });
+
+  container.innerHTML = players.map((player, index) => {
+    const value = displayValue(player[statistic]);
 
     return `
       <div class="leaderboard-row">
         <span class="leader-rank">${String(index + 1).padStart(2, "0")}</span>
         <strong>${escapeHTML(player.name)}</strong>
-        <span class="leader-value">
-          ${value} ${value === 1 ? label.slice(0, -1).toLowerCase() : label.toLowerCase()}
-        </span>
+        <span class="leader-value">${value}</span>
       </div>
     `;
   }).join("");
@@ -724,49 +570,73 @@ function renderLeaderboards() {
 }
 
 
-/* ---------- 11. FULL SQUAD STATISTICS TABLE ---------- */
+/* =========================================================
+   10. FULL SQUAD STATISTICS TABLE
+   All 10 players are included.
+   ========================================================= */
 
 function renderStatsTable() {
   const container = $("#statsTable");
-
   if (!container) return;
 
-  container.innerHTML = teamData.players.map(player => `
-    <tr>
-      <td>${escapeHTML(player.name)}</td>
-      <td>${displayValue(player.appearances)}</td>
-      <td>${player.goals}</td>
-      <td>${displayValue(player.assists)}</td>
-    </tr>
-  `).join("");
+  const sortedPlayers = [...teamData.players].sort((a, b) => {
+    if (b.goals !== a.goals) return b.goals - a.goals;
+
+    const aAssists = a.assists ?? -1;
+    const bAssists = b.assists ?? -1;
+
+    if (bAssists !== aAssists) return bAssists - aAssists;
+
+    return a.name.localeCompare(b.name);
+  });
+
+  container.innerHTML = sortedPlayers.map((player, index) => {
+    const contributions =
+      player.assists === null ? null : player.goals + player.assists;
+
+    return `
+      <tr>
+        <td>${String(index + 1).padStart(2, "0")}</td>
+        <td>${escapeHTML(player.name)}</td>
+        <td>${displayValue(player.appearances)}</td>
+        <td>${player.goals}</td>
+        <td>${displayValue(player.assists)}</td>
+        <td>${displayValue(contributions)}</td>
+      </tr>
+    `;
+  }).join("");
 }
 
 
-/* ---------- 12. TEAM OF THE WEEK ---------- */
+/* =========================================================
+   11. TEAM OF THE WEEK
+   ========================================================= */
 
 function renderTeamOfWeek() {
   setText("teamOfWeekPlayer", teamData.teamOfWeek.player);
 
   const label = $(".totw-label");
-
   if (label) {
     label.textContent = `GAMEWEEK ${teamData.teamOfWeek.gameweek}`;
   }
 }
 
 
-/* ---------- 13. FIXTURES ---------- */
+/* =========================================================
+   12. FIXTURES
+   ========================================================= */
 
 function renderFixtures() {
   const container = $("#fixturesTable");
-
   if (!container) return;
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  // Use local calendar dates to determine whether a fixture is in the past.
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
   container.innerHTML = teamData.fixtures.map(fixture => {
-    const fixtureDate = new Date(`${fixture.date}T00:00:00`);
+    const [year, month, day] = fixture.date.split("-").map(Number);
+    const fixtureDate = new Date(year, month - 1, day);
     const isPast = fixtureDate < today;
 
     return `
@@ -777,7 +647,7 @@ function renderFixtures() {
         <td>${escapeHTML(fixture.venue)}</td>
         <td>
           <span class="table-status">
-            ${isPast ? "Scheduled — verify result" : "Upcoming"}
+            ${isPast ? "Result to be updated" : "Upcoming"}
           </span>
         </td>
       </tr>
@@ -786,22 +656,21 @@ function renderFixtures() {
 }
 
 
-/* ---------- 14. DISCIPLINE REGISTER ---------- */
+/* =========================================================
+   13. DISCIPLINE REGISTER
+   ========================================================= */
 
 function renderDiscipline() {
   const container = $("#finesTable");
-
   if (!container) return;
 
-  const playersWithCards = teamData.players.filter(player =>
-    player.cards.green > 0 || player.cards.yellow > 0
+  const playersWithCards = teamData.players.filter(
+    player => player.green > 0 || player.yellow > 0
   );
 
-  if (playersWithCards.length === 0) {
+  if (!playersWithCards.length) {
     container.innerHTML = `
-      <tr>
-        <td colspan="4">No cards recorded.</td>
-      </tr>
+      <tr><td colspan="4">No cards recorded.</td></tr>
     `;
     return;
   }
@@ -809,22 +678,23 @@ function renderDiscipline() {
   container.innerHTML = playersWithCards.map(player => `
     <tr>
       <td>${escapeHTML(player.name)}</td>
-      <td>${player.cards.green}</td>
-      <td>${player.cards.yellow}</td>
+      <td>${player.green}</td>
+      <td>${player.yellow}</td>
       <td>—</td>
     </tr>
   `).join("");
 }
 
 
-/* ---------- 15. INJURY REGISTER ---------- */
+/* =========================================================
+   14. INJURY REGISTER
+   ========================================================= */
 
 function renderInjuries() {
   const container = $("#injuriesList");
-
   if (!container) return;
 
-  if (teamData.injuries.length === 0) {
+  if (!teamData.injuries.length) {
     container.innerHTML = `
       <p class="empty-state">No injuries recorded.</p>
     `;
@@ -834,29 +704,27 @@ function renderInjuries() {
   container.innerHTML = teamData.injuries.map(injury => `
     <div class="injury-row">
       <span class="injury-indicator"></span>
-
       <div>
         <strong>${escapeHTML(injury.player)}</strong>
         <p>${escapeHTML(injury.description)}</p>
       </div>
-
       <span class="injury-status">${escapeHTML(injury.status)}</span>
     </div>
   `).join("");
 }
 
 
-/* ---------- 16. TEAM RULES ---------- */
+/* =========================================================
+   15. TEAM RULES
+   ========================================================= */
 
 function renderRules() {
   const container = $("#rulesList");
-
   if (!container) return;
 
   container.innerHTML = teamData.rules.map((rule, index) => `
     <article class="rule-card${index === teamData.rules.length - 1 ? " rule-card-wide" : ""}">
       <span class="rule-number">${String(index + 1).padStart(2, "0")}</span>
-
       <div>
         <h3>${escapeHTML(rule.title)}</h3>
         <p>${escapeHTML(rule.description)}</p>
@@ -866,55 +734,55 @@ function renderRules() {
 }
 
 
-/* ---------- 17. MOBILE NAVIGATION ---------- */
+/* =========================================================
+   16. MOBILE NAVIGATION
+   ========================================================= */
 
 function setupMobileNavigation() {
   const toggle = $("#menuToggle");
-  const navigation = $("#mainNav");
+  const nav = $("#mainNav");
 
-  if (!toggle || !navigation) return;
+  if (!toggle || !nav) return;
 
   function closeMenu() {
-    navigation.classList.remove("open");
+    nav.classList.remove("open");
     toggle.setAttribute("aria-expanded", "false");
-    toggle.setAttribute("aria-label", "Open navigation");
+    toggle.setAttribute("aria-label", "Open menu");
   }
 
   toggle.addEventListener("click", () => {
-    const isOpen = navigation.classList.toggle("open");
+    const isOpen = nav.classList.toggle("open");
 
     toggle.setAttribute("aria-expanded", String(isOpen));
     toggle.setAttribute(
       "aria-label",
-      isOpen ? "Close navigation" : "Open navigation"
+      isOpen ? "Close menu" : "Open menu"
     );
   });
 
-  $$(".nav-link", navigation).forEach(link => {
+  $$(".nav-link", nav).forEach(link => {
     link.addEventListener("click", closeMenu);
   });
 
   document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
-      closeMenu();
-    }
+    if (event.key === "Escape") closeMenu();
   });
 
   document.addEventListener("click", event => {
-    if (
-      !navigation.contains(event.target) &&
-      !toggle.contains(event.target)
-    ) {
+    if (!nav.contains(event.target) && !toggle.contains(event.target)) {
       closeMenu();
     }
   });
 }
 
 
-/* ---------- 18. ACTIVE NAVIGATION LINK ---------- */
+/* =========================================================
+   17. ACTIVE NAVIGATION
+   ========================================================= */
 
 function setupActiveNavigation() {
   const links = $$(".nav-link");
+
   const sections = links
     .map(link => document.querySelector(link.getAttribute("href")))
     .filter(Boolean);
@@ -922,20 +790,20 @@ function setupActiveNavigation() {
   if (!("IntersectionObserver" in window)) return;
 
   const observer = new IntersectionObserver(entries => {
-    const visibleSections = entries
+    const visible = entries
       .filter(entry => entry.isIntersecting)
       .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
-    if (visibleSections.length === 0) return;
+    if (!visible.length) return;
 
-    const currentId = visibleSections[0].target.id;
+    const currentId = visible[0].target.id;
 
     links.forEach(link => {
-      const isActive = link.getAttribute("href") === `#${currentId}`;
+      const active = link.getAttribute("href") === `#${currentId}`;
 
-      link.classList.toggle("active", isActive);
+      link.classList.toggle("active", active);
 
-      if (isActive) {
+      if (active) {
         link.setAttribute("aria-current", "location");
       } else {
         link.removeAttribute("aria-current");
@@ -950,14 +818,18 @@ function setupActiveNavigation() {
 }
 
 
-/* ---------- 19. FOOTER YEAR ---------- */
+/* =========================================================
+   18. FOOTER
+   ========================================================= */
 
 function renderFooter() {
   setText("currentYear", new Date().getFullYear());
 }
 
 
-/* ---------- 20. INITIALISE WEBSITE ---------- */
+/* =========================================================
+   19. START WEBSITE
+   ========================================================= */
 
 function initialiseWebsite() {
   renderOverview();
