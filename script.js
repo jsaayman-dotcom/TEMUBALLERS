@@ -4,16 +4,16 @@
 
 const DATA = {
   players: [
-    { name: "Josh",    goals: 2, assists: null, appearances: 2, position: "Not specified" },
-    { name: "Ethan",   goals: 0, assists: null, appearances: null, position: "Not specified" },
-    { name: "Josè",    goals: 0, assists: null, appearances: null, position: "Not specified" },
-    { name: "Abdou",   goals: 0, assists: null, appearances: null, position: "Not specified" },
-    { name: "Adam",    goals: 2, assists: null, appearances: 2, position: "Not specified" },
-    { name: "Alex",    goals: 0, assists: null, appearances: null, position: "Not specified" },
-    { name: "Brandon", goals: 0, assists: null, appearances: null, position: "Not specified" },
-    { name: "Lathi",   goals: 0, assists: null, appearances: null, position: "Not specified" },
-    { name: "Zack",    goals: 1, assists: null, appearances: 1, position: "Not specified" },
-    { name: "Manu",    goals: 0, assists: null, appearances: null, position: "Not specified" }
+    { name: "Josh",    goals: 2, assists: 0, appearances: 2},
+    { name: "Ethan",   goals: 0, assists: 0, appearances: 2},
+    { name: "Josè",    goals: 0, assists: 0, appearances: 2},
+    { name: "Abdou",   goals: 0, assists: 0, appearances: 2},
+    { name: "Adam",    goals: 2, assists: 0, appearances: 2},
+    { name: "Alex",    goals: 0, assists: 0, appearances: 0},
+    { name: "Brandon", goals: 0, assists: 0, appearances: 2},
+    { name: "Lathi",   goals: 0, assists: 0, appearances: 2},
+    { name: "Zack",    goals: 1, assists: 0, appearances: 1},
+    { name: "Manu",    goals: 0, assists: 0, appearances: 0}
   ],
 
   results: [
