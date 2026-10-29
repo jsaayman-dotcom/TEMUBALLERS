@@ -3,7 +3,7 @@ const DATA = {
   players: [
     { name: "Josh", goals: 2, assists: 0, appearances: 2 },
     { name: "Ethan", goals: 0, assists: 0, appearances: 2 },
-    { name: "Jose", goals: 0, assists: 0, appearances: 2 },
+    { name: "José", goals: 0, assists: 0, appearances: 2 },
     { name: "Abdou", goals: 0, assists: 0, appearances: 2 },
     { name: "Adam", goals: 2, assists: 0, appearances: 2 },
     { name: "Alex", goals: 0, assists: 0, appearances: 0 },
@@ -16,274 +16,343 @@ const DATA = {
   results: [
     {
       opponent: "Dark Knights",
-      date: "Date not recorded",
-      team: 3,
+      teamScore: 3,
       opponentScore: 3,
-      scorers: ["Josh", "Zach", "Adam"]
+      scorers: ["Josh", "Zach", "Adam"],
+      date: "Date not recorded"
     },
     {
       opponent: "FC Sparta",
-      date: "Date not recorded",
-      team: 2,
+      teamScore: 2,
       opponentScore: 1,
-      scorers: ["Josh", "Adam"]
+      scorers: ["Josh", "Adam"],
+      date: "Date not recorded"
     }
   ],
 
   fixtures: [
-    { date: "04 Nov 2026", opponent: "Superstrikers", time: "18:15", venue: "Fairview Action Arena" },
-    { date: "11 Nov 2026", opponent: "Depot Utd FC", time: "20:30", venue: "Fairview Action Arena" },
-    { date: "18 Nov 2026", opponent: "Von-Boeties FC", time: "19:00", venue: "Fairview Action Arena" },
-    { date: "25 Nov 2026", opponent: "Teknology FC", time: "18:15", venue: "Fairview Action Arena" },
-    { date: "02 Dec 2026", opponent: "The Unknowns", time: "19:45", venue: "Fairview Action Arena" },
-    { date: "09 Dec 2026", opponent: "Quality Control", time: "21:15", venue: "Fairview Action Arena" },
-    { date: "16 Dec 2026", opponent: "Toray Logistics", time: "20:30", venue: "Fairview Action Arena" }
+    { date: "04 Nov 2026", time: "18:15", opponent: "Superstrikers" },
+    { date: "11 Nov 2026", time: "20:30", opponent: "Depot Utd FC" },
+    { date: "18 Nov 2026", time: "19:00", opponent: "Von-Boeties FC" },
+    { date: "25 Nov 2026", time: "18:15", opponent: "Teknology FC" },
+    { date: "02 Dec 2026", time: "19:45", opponent: "The Unknowns" },
+    { date: "09 Dec 2026", time: "21:15", opponent: "Quality Control" },
+    { date: "16 Dec 2026", time: "20:30", opponent: "Toray Logistics" }
   ],
 
   fines: [
-    { player: "Ethan", incident: "Green card", type: "green", shots: 1, date: "Date not recorded" },
-    { player: "Zach", incident: "Green card", type: "green", shots: 1, date: "Date not recorded" },
-    { player: "Adam", incident: "Green card", type: "green", shots: 1, date: "Date not recorded" },
-    { player: "Brandon", incident: "Green card", type: "green", shots: 1, date: "Date not recorded" },
-    { player: "Abdou", incident: "Green card", type: "green", shots: 1, date: "Date not recorded" },
-    { player: "Alex", incident: "Yellow card", type: "yellow", shots: 1, date: "Date not recorded" }
+    { player: "Ethan", type: "Green", date: "28 Oct 2026", shots: 1 },
+    { player: "Zach", type: "Green", date: "28 Oct 2026", shots: 1 },
+    { player: "Adam", type: "Green", date: "28 Oct 2026", shots: 1 },
+    { player: "Brandon", type: "Green", date: "28 Oct 2026", shots: 1 },
+    { player: "Abdou", type: "Green", date: "28 Oct 2026", shots: 1 },
+    { player: "Alex", type: "Green", date: "28 Oct 2026", shots: 1 },
+    { player: "Alex", type: "Yellow", date: "28 Oct 2026", shots: 1 }
   ],
 
   rules: [
-    "Yellow card — one shot under the team rules.",
-    "Green card — one shot under the team rules.",
-    "Injury — applies only if the team has agreed to this rule.",
-    "Own goal — one shot under the team rules.",
-    "Not scoring — one shot under the team rules.",
-    "Missing an open goal — one shot under the team rules.",
+    "Yellow card — one shot under team rules.",
+    "Green card — one shot under team rules.",
+    "Injury — only applies if the team has agreed to this rule.",
+    "Own goal — one shot under team rules.",
+    "Not scoring — one shot under team rules.",
+    "Missing an open goal — one shot under team rules.",
     "Finishing below 4th place — everyone takes a shot."
-  ]
+  ],
+
+  venue: "Fairview Action Arena"
 };
+
+// ---------- HELPERS ----------
 
 const $ = (id) => document.getElementById(id);
 
-const escapeHTML = (value) =>
-  String(value ?? "").replace(/[&<>"']/g, (character) => ({
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (char) => ({
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
     '"': "&quot;",
     "'": "&#039;"
-  })[character]);
+  })[char]);
+}
 
-const initials = (name) =>
-  name.trim().split(/\s+/).map((part) => part[0]).join("").toUpperCase();
+function displayStat(value) {
+  return value === null || value === undefined || value === ""
+    ? "—"
+    : value;
+}
 
-const displayStat = (value) =>
-  value === null || value === undefined ? "—" : value;
+function getResult(result) {
+  if (result.teamScore > result.opponentScore) return "W";
+  if (result.teamScore < result.opponentScore) return "L";
+  return "D";
+}
 
-const totalGoals = DATA.results.reduce((sum, match) => sum + match.team, 0);
-const totalConceded = DATA.results.reduce((sum, match) => sum + match.opponentScore, 0);
+function getGoalDifference() {
+  const goalsFor = DATA.results.reduce(
+    (total, result) => total + result.teamScore,
+    0
+  );
 
-const wins = DATA.results.filter((match) => match.team > match.opponentScore).length;
-const draws = DATA.results.filter((match) => match.team === match.opponentScore).length;
-const losses = DATA.results.filter((match) => match.team < match.opponentScore).length;
-const points = wins * 3 + draws;
+  const goalsAgainst = DATA.results.reduce(
+    (total, result) => total + result.opponentScore,
+    0
+  );
+
+  return goalsFor - goalsAgainst;
+}
+
+function getPlayer(name) {
+  return DATA.players.find(
+    (player) => player.name.toLowerCase() === name.toLowerCase()
+  );
+}
+
+// ---------- OVERVIEW ----------
 
 function renderOverview() {
-  $("matchesPlayed").textContent = DATA.results.length;
-  $("points").textContent = points;
-  $("goalsFor").textContent = totalGoals;
+  const played = DATA.results.length;
+  const wins = DATA.results.filter((result) => getResult(result) === "W").length;
+  const draws = DATA.results.filter((result) => getResult(result) === "D").length;
+  const losses = DATA.results.filter((result) => getResult(result) === "L").length;
 
-  const difference = totalGoals - totalConceded;
-  $("goalDifference").textContent = difference > 0 ? `+${difference}` : difference;
-  $("goalsAgainstLabel").textContent = `${totalConceded} conceded`;
+  const goalsFor = DATA.results.reduce(
+    (total, result) => total + result.teamScore,
+    0
+  );
 
-  $("winsCount").textContent = wins;
-  $("drawsCount").textContent = draws;
-  $("lossesCount").textContent = losses;
+  const goalsAgainst = DATA.results.reduce(
+    (total, result) => total + result.opponentScore,
+    0
+  );
 
-  $("resultsList").innerHTML = [...DATA.results].reverse().map((match) => {
-    const status = match.team > match.opponentScore
-      ? "W"
-      : match.team === match.opponentScore ? "D" : "L";
+  const points = wins * 3 + draws;
+
+  if ($("matchesPlayed")) $("matchesPlayed").textContent = played;
+  if ($("points")) $("points").textContent = points;
+  if ($("goalsFor")) $("goalsFor").textContent = goalsFor;
+  if ($("goalDifference")) {
+    const difference = goalsFor - goalsAgainst;
+    $("goalDifference").textContent =
+      difference > 0 ? `+${difference}` : difference;
+  }
+  if ($("goalsAgainstLabel")) {
+    $("goalsAgainstLabel").textContent = goalsAgainst;
+  }
+
+  if ($("winsCount")) $("winsCount").textContent = wins;
+  if ($("drawsCount")) $("drawsCount").textContent = draws;
+  if ($("lossesCount")) $("lossesCount").textContent = losses;
+
+  renderResults();
+  renderFormGuide();
+}
+
+function renderResults() {
+  const container = $("resultsList");
+  if (!container) return;
+
+  if (!DATA.results.length) {
+    container.innerHTML = '<div class="empty-state">No match results recorded yet.</div>';
+    return;
+  }
+
+  container.innerHTML = [...DATA.results].reverse().map((result) => {
+    const status = getResult(result);
+    const scorers = result.scorers.length
+      ? result.scorers.map(escapeHTML).join(", ")
+      : "No scorers recorded";
 
     return `
-      <div class="result-row">
+      <article class="result-row">
         <div class="result-team">
-          TEMU BALLERS
-          <small>${escapeHTML(match.date)}</small>
-          <span class="result-status status-${status}">
-            ${status === "W" ? "WIN" : status === "D" ? "DRAW" : "LOSS"}
-          </span>
+          <strong>Temu Ballers</strong>
+          <span>vs ${escapeHTML(result.opponent)}</span>
+          <small>${escapeHTML(result.date)}</small>
+          <small>Scorers: ${scorers}</small>
         </div>
+        <div class="result-score">${result.teamScore}–${result.opponentScore}</div>
+        <span class="result-status status-${status}">${status}</span>
+      </article>
+    `;
+  }).join("");
+}
 
-        <div class="result-score">
-          <span>${match.team}</span>
-          <span class="dash">–</span>
-          <span>${match.opponentScore}</span>
-        </div>
+function renderFormGuide() {
+  const container = $("formGuide");
+  if (!container) return;
 
-        <div class="result-team">
-          ${escapeHTML(match.opponent)}
-          <small>FULL TIME</small>
+  const form = DATA.results.slice(-5).map(getResult);
+
+  container.innerHTML = form.length
+    ? form.map((result) =>
+        `<span class="form-pill ${result}" title="${
+          result === "W" ? "Win" : result === "D" ? "Draw" : "Loss"
+        }">${result}</span>`
+      ).join("")
+    : '<span class="empty-state">No form recorded yet.</span>';
+}
+
+// ---------- SQUAD ----------
+
+function renderPlayers(searchTerm = "") {
+  const container = $("playersGrid");
+  if (!container) return;
+
+  const term = searchTerm.trim().toLowerCase();
+
+  const filteredPlayers = DATA.players.filter((player) =>
+    player.name.toLowerCase().includes(term)
+  );
+
+  if ($("playerCount")) {
+    $("playerCount").textContent = filteredPlayers.length;
+  }
+
+  if (!filteredPlayers.length) {
+    container.innerHTML = '<div class="empty-state">No players match your search.</div>';
+    return;
+  }
+
+  container.innerHTML = filteredPlayers.map((player) => {
+    const initial = player.name.charAt(0).toUpperCase();
+
+    return `
+      <button class="player-card" type="button"
+        data-player="${escapeHTML(player.name)}"
+        aria-label="View ${escapeHTML(player.name)}'s profile">
+        <div class="player-avatar">${escapeHTML(initial)}</div>
+        <div class="player-name">${escapeHTML(player.name)}</div>
+        <div class="player-mini-stats">
+          <span><strong>${displayStat(player.goals)}</strong> goals</span>
+          <span><strong>${displayStat(player.assists)}</strong> assists</span>
+          <span><strong>${displayStat(player.appearances)}</strong> apps</span>
         </div>
-      </div>
+      </button>
     `;
   }).join("");
 
-  $("formGuide").innerHTML = DATA.results.length
-    ? DATA.results.map((match) => {
-        const status = match.team > match.opponentScore
-          ? "W"
-          : match.team === match.opponentScore ? "D" : "L";
-
-        return `<span class="form-pill ${status}">${status}</span>`;
-      }).join("")
-    : `<div class="empty-state">No results recorded yet.</div>`;
-}
-
-function renderPlayers(searchTerm = "") {
-  const filteredPlayers = DATA.players.filter((player) =>
-    player.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  $("playerCount").textContent = DATA.players.length;
-
-  $("playersGrid").innerHTML = filteredPlayers.length
-    ? filteredPlayers.map((player) => `
-      <button
-        class="player-card"
-        type="button"
-        data-player="${escapeHTML(player.name)}"
-        aria-label="View ${escapeHTML(player.name)}'s statistics"
-      >
-        <span class="player-avatar">${escapeHTML(initials(player.name))}</span>
-        <span class="player-name">${escapeHTML(player.name)}</span>
-
-        <span class="player-mini-stats">
-          <span><strong>${displayStat(player.goals)}</strong>Goals</span>
-          <span><strong>${displayStat(player.assists)}</strong>Assists</span>
-          <span><strong>${displayStat(player.appearances)}</strong>Apps</span>
-        </span>
-      </button>
-    `).join("")
-    : `<div class="empty-state">No players match your search.</div>`;
-
-  $("playersGrid").querySelectorAll("[data-player]").forEach((button) => {
-    button.addEventListener("click", () => {
-      openPlayerProfile(button.dataset.player);
+  container.querySelectorAll("[data-player]").forEach((card) => {
+    card.addEventListener("click", () => {
+      openPlayerProfile(card.dataset.player);
     });
   });
 }
 
-function renderLeaderboard(elementId, statName) {
-  const players = [...DATA.players].sort((a, b) => {
-    const aValue = a[statName];
-    const bValue = b[statName];
+function renderLeaderboard() {
+  const goalContainer = $("goalsLeaderboard");
+  const assistContainer = $("assistsLeaderboard");
 
-    if (aValue == null && bValue == null) return a.name.localeCompare(b.name);
-    if (aValue == null) return 1;
-    if (bValue == null) return -1;
+  const goalLeaders = [...DATA.players].sort((a, b) =>
+    b.goals - a.goals || a.name.localeCompare(b.name)
+  );
 
-    return bValue - aValue || a.name.localeCompare(b.name);
-  });
+  if (goalContainer) {
+    const highestGoals = Math.max(
+      0,
+      ...DATA.players.map((player) => player.goals)
+    );
 
-  const hasRecordedValues = players.some((player) => player[statName] != null);
+    const leaders = goalLeaders.filter(
+      (player) => player.goals === highestGoals && highestGoals > 0
+    );
 
-  if (!hasRecordedValues) {
-    $(elementId).innerHTML = `
-      <div class="empty-state">
-        ${statName === "goals" ? "Goal" : "Assist"} totals have not been recorded yet.
-      </div>
-    `;
-    return;
+    goalContainer.innerHTML = highestGoals === 0
+      ? '<div class="empty-state">No goals recorded yet.</div>'
+      : leaders.map((player, index) => `
+          <div class="leader-row">
+            <span class="leader-rank">${index + 1}</span>
+            <span class="leader-player">${escapeHTML(player.name)}</span>
+            <strong class="leader-value">
+              ${player.goals} ${player.goals === 1 ? "goal" : "goals"}
+            </strong>
+          </div>
+        `).join("");
   }
 
-  $(elementId).innerHTML = players.map((player, index) => {
-    const value = player[statName];
-    const recorded = value != null;
+  if (assistContainer) {
+    const recordedAssists = DATA.players.some(
+      (player) => player.assists !== null && player.assists !== undefined
+    );
+
+    if (!recordedAssists) {
+      assistContainer.innerHTML =
+        '<div class="empty-state">Assist totals haven’t been recorded yet.</div>';
+      return;
+    }
+
+    const sorted = [...DATA.players].sort((a, b) =>
+      (b.assists ?? -1) - (a.assists ?? -1) ||
+      a.name.localeCompare(b.name)
+    );
+
+    const highestAssists = Math.max(
+      0,
+      ...DATA.players.map((player) => player.assists ?? 0)
+    );
+
+    assistContainer.innerHTML = sorted
+      .filter((player) => player.assists === highestAssists)
+      .map((player, index) => `
+        <div class="leader-row">
+          <span class="leader-rank">${index + 1}</span>
+          <span class="leader-player">${escapeHTML(player.name)}</span>
+          <strong class="leader-value">
+            ${displayStat(player.assists)} ${player.assists === 1 ? "assist" : "assists"}
+          </strong>
+        </div>
+      `).join("");
+  }
+}
+
+function renderPlayerStats() {
+  const container = $("statsTable");
+  if (!container) return;
+
+  const sorted = [...DATA.players].sort((a, b) => {
+    const gaA = a.goals + (a.assists ?? 0);
+    const gaB = b.goals + (b.assists ?? 0);
+
+    return gaB - gaA ||
+      b.goals - a.goals ||
+      (b.appearances ?? -1) - (a.appearances ?? -1) ||
+      a.name.localeCompare(b.name);
+  });
+
+  container.innerHTML = sorted.map((player, index) => {
+    const goalContributions = player.goals + (player.assists ?? 0);
 
     return `
-      <div class="leader-row">
-        <span class="leader-rank">${String(index + 1).padStart(2, "0")}</span>
-        <span class="leader-player">
-          <strong>${escapeHTML(player.name)}</strong>
-          <small>${recorded ? "Season total" : "Not recorded"}</small>
-        </span>
-        <span class="leader-value ${recorded ? "" : "unrecorded"}">
-          ${displayStat(value)}
-        </span>
-      </div>
+      <tr>
+        <td>${index + 1}</td>
+        <td>${escapeHTML(player.name)}</td>
+        <td>${displayStat(player.appearances)}</td>
+        <td>${displayStat(player.goals)}</td>
+        <td>${displayStat(player.assists)}</td>
+        <td>${goalContributions}</td>
+      </tr>
     `;
   }).join("");
 }
 
-function renderPlayerStats() {
-  $("statsTable").innerHTML = DATA.players.map((player) => `
-    <tr>
-      <td>${escapeHTML(player.name)}</td>
-      <td>${displayStat(player.appearances)}</td>
-      <td>${displayStat(player.goals)}</td>
-      <td>${displayStat(player.assists)}</td>
-    </tr>
-  `).join("");
-}
-
-function renderFixtures() {
-  $("fixturesTable").innerHTML = DATA.fixtures.map((fixture) => `
-    <tr>
-      <td class="fixture-date">${escapeHTML(fixture.date)}</td>
-      <td class="fixture-opponent">${escapeHTML(fixture.opponent)}</td>
-      <td>${escapeHTML(fixture.time)}</td>
-      <td class="fixture-venue">${escapeHTML(fixture.venue)}</td>
-    </tr>
-  `).join("");
-}
-
-function renderFines() {
-  const greenCount = DATA.fines.filter((fine) => fine.type === "green").length;
-  const yellowCount = DATA.fines.filter((fine) => fine.type === "yellow").length;
-  const shotCount = DATA.fines.reduce((sum, fine) => sum + fine.shots, 0);
-
-  $("totalFines").textContent = DATA.fines.length;
-  $("greenCards").textContent = greenCount;
-  $("yellowCards").textContent = yellowCount;
-  $("totalShots").textContent = shotCount;
-
-  $("finesTable").innerHTML = DATA.fines.length
-    ? DATA.fines.map((fine) => `
-      <tr>
-        <td>${escapeHTML(fine.player)}</td>
-        <td>
-          <span class="card-type">
-            <span class="card-dot ${escapeHTML(fine.type)}"></span>
-            ${escapeHTML(fine.incident)}
-          </span>
-        </td>
-        <td><span class="shot-status">${fine.shots} ${fine.shots === 1 ? "shot" : "shots"}</span></td>
-        <td>${escapeHTML(fine.date)}</td>
-      </tr>
-    `).join("")
-    : `<tr><td colspan="4">No incidents recorded yet.</td></tr>`;
-
-  $("rulesList").innerHTML = DATA.rules.map((rule, index) => `
-    <div class="rule-item">
-      <span class="rule-number">${String(index + 1).padStart(2, "0")}</span>
-      <span>${escapeHTML(rule)}</span>
-    </div>
-  `).join("");
-}
-
 function openPlayerProfile(playerName) {
-  const player = DATA.players.find((item) => item.name === playerName);
-  if (!player) return;
+  const player = getPlayer(playerName);
+  const dialog = $("playerDialog");
+  const profile = $("playerProfile");
 
-  $("playerProfile").innerHTML = `
+  if (!player || !dialog || !profile) return;
+
+  const contributions = player.goals + (player.assists ?? 0);
+
+  profile.innerHTML = `
     <div class="profile-header">
-      <span class="player-avatar">${escapeHTML(initials(player.name))}</span>
+      <div class="player-avatar">${escapeHTML(player.name.charAt(0).toUpperCase())}</div>
       <div>
-        <p class="eyebrow">TEMU BALLERS</p>
-        <h3>${escapeHTML(player.name)}</h3>
-        <p>Player statistics</p>
+        <h2>${escapeHTML(player.name)}</h2>
+        <p>Temu Ballers</p>
       </div>
     </div>
-
     <div class="profile-stats">
       <div class="profile-stat">
         <strong>${displayStat(player.appearances)}</strong>
@@ -297,42 +366,143 @@ function openPlayerProfile(playerName) {
         <strong>${displayStat(player.assists)}</strong>
         <span>Assists</span>
       </div>
+      <div class="profile-stat">
+        <strong>${contributions}</strong>
+        <span>Goal contributions</span>
+      </div>
     </div>
-
-    <p class="table-note">A dash means the statistic has not been recorded yet.</p>
   `;
 
-  const dialog = $("playerDialog");
-
   if (typeof dialog.showModal === "function") {
-    dialog.showModal();
+    if (!dialog.open) dialog.showModal();
   } else {
     dialog.setAttribute("open", "");
   }
 }
 
-function initialiseWebsite() {
+// ---------- FIXTURES ----------
+
+function renderFixtures() {
+  const container = $("fixturesTable");
+  if (!container) return;
+
+  if (!DATA.fixtures.length) {
+    container.innerHTML = '<tr><td colspan="3">No upcoming fixtures recorded.</td></tr>';
+    return;
+  }
+
+  container.innerHTML = DATA.fixtures.map((fixture) => `
+    <tr>
+      <td>${escapeHTML(fixture.date)}</td>
+      <td>${escapeHTML(fixture.time)}</td>
+      <td>
+        <strong>Temu Ballers</strong> vs ${escapeHTML(fixture.opponent)}
+        <small class="fixture-venue">${escapeHTML(DATA.venue)}</small>
+      </td>
+    </tr>
+  `).join("");
+}
+
+// ---------- FINES REGISTER ----------
+
+function renderFines() {
+  const container = $("finesTable");
+  const greenCards = DATA.fines.filter(
+    (fine) => fine.type.toLowerCase() === "green"
+  ).length;
+
+  const yellowCards = DATA.fines.filter(
+    (fine) => fine.type.toLowerCase() === "yellow"
+  ).length;
+
+  const totalShots = DATA.fines.reduce(
+    (total, fine) => total + fine.shots,
+    0
+  );
+
+  if ($("totalFines")) $("totalFines").textContent = DATA.fines.length;
+  if ($("greenCards")) $("greenCards").textContent = greenCards;
+  if ($("yellowCards")) $("yellowCards").textContent = yellowCards;
+  if ($("totalShots")) $("totalShots").textContent = totalShots;
+
+  if (container) {
+    if (!DATA.fines.length) {
+      container.innerHTML =
+        '<tr><td colspan="4">No cards or fines recorded yet.</td></tr>';
+    } else {
+      container.innerHTML = [...DATA.fines].reverse().map((fine) => {
+        const type = fine.type.toLowerCase();
+        const dotClass = type === "green"
+          ? "green"
+          : type === "yellow"
+            ? "yellow"
+            : "other";
+
+        return `
+          <tr>
+            <td>${escapeHTML(fine.date)}</td>
+            <td>${escapeHTML(fine.player)}</td>
+            <td>
+              <span class="card-type">
+                <span class="card-dot ${dotClass}"></span>
+                ${escapeHTML(fine.type)} card
+              </span>
+            </td>
+            <td><span class="shot-status">${fine.shots} ${fine.shots === 1 ? "shot" : "shots"}</span></td>
+          </tr>
+        `;
+      }).join("");
+    }
+  }
+
+  renderRules();
+}
+
+function renderRules() {
+  const container = $("rulesList");
+  if (!container) return;
+
+  container.innerHTML = DATA.rules.map((rule, index) => `
+    <li class="rule-item">
+      <span class="rule-number">${String(index + 1).padStart(2, "0")}</span>
+      <span>${escapeHTML(rule)}</span>
+    </li>
+  `).join("");
+}
+
+// ---------- INITIALISE ----------
+
+document.addEventListener("DOMContentLoaded", () => {
   renderOverview();
   renderPlayers();
-  renderLeaderboard("goalsLeaderboard", "goals");
-  renderLeaderboard("assistsLeaderboard", "assists");
+  renderLeaderboard();
   renderPlayerStats();
   renderFixtures();
   renderFines();
 
-  $("playerSearch").addEventListener("input", (event) => {
-    renderPlayers(event.target.value);
-  });
+  const search = $("playerSearch");
+  if (search) {
+    search.addEventListener("input", (event) => {
+      renderPlayers(event.target.value);
+    });
+  }
 
-  $("closeDialog").addEventListener("click", () => {
-    $("playerDialog").close();
-  });
+  const closeButton = $("closeDialog");
+  const dialog = $("playerDialog");
 
-  $("playerDialog").addEventListener("click", (event) => {
-    if (event.target === $("playerDialog")) {
-      $("playerDialog").close();
-    }
-  });
-}
+  if (closeButton && dialog) {
+    closeButton.addEventListener("click", () => {
+      if (typeof dialog.close === "function") {
+        dialog.close();
+      } else {
+        dialog.removeAttribute("open");
+      }
+    });
 
-document.addEventListener("DOMContentLoaded", initialiseWebsite);
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog && typeof dialog.close === "function") {
+        dialog.close();
+      }
+    });
+  }
+});
